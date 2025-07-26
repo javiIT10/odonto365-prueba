@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title -->
+    <title>Odonto365</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="src/img/logos/logo.ico"
+      type="image/x-icon"
+    />
+
+    <!--==================== CSS ====================-->
+
+    <!-- Remixicons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- CSS Perzonalizado -->
+    <link rel="stylesheet" href="src/css/output.css" />
+  </head>
+  <body class="font-poppins">
+    <!--==================== HEADER ====================-->
+    <header class="relative z-50 bg-primary-lighten">
+      <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center h-16 md:h-20">
+          <!-- Logo -->
+          <div class="flex items-center text-title">
+            <div class="flex-shrink-0">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-primary"
+              >
+                <path
+                  d="M16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4ZM16 26C10.4772 26 6 21.5228 6 16C6 10.4772 10.4772 6 16 6C21.5228 6 26 10.4772 26 16C26 21.5228 21.5228 26 16 26Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M16 10C13.7909 10 12 11.7909 12 14C12 15.1046 12.8954 16 14 16C15.1046 16 16 15.1046 16 14C16 12.8954 16.8954 12 18 12C19.1046 12 20 12.8954 20 14C20 16.2091 18.2091 18 16 18C13.7909 18 12 19.7909 12 22H20C20 19.7909 18.2091 18 16 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="ml-2 text-xl lg:text-2xl font-bold">Odonto365</div>
+          </div>
+
+          <!-- Menú para pantallas grandes -->
+          <nav class="hidden lg:flex space-x-4">
+            <a
+              href="#"
+              class="color-text font-medium hover:bg-gray-100 rounded-md px-3 py-2"
+              >Inicio</a
+            >
+            <a
+              href="#"
+              class="color-text font-medium hover:bg-gray-100 rounded-md px-3 py-2"
+              >Instalaciones</a
+            >
+            <a
+              href="#"
+              class="color-text font-medium hover:bg-gray-100 rounded-md px-3 py-2"
+              >Especialidades</a
+            >
+            <a
+              href="#"
+              class="color-text font-medium hover:bg-gray-100 rounded-md px-3 py-2"
+              >Blog</a
+            >
+            <a
+              href="#"
+              class="color-text font-medium hover:bg-gray-100 rounded-md px-3 py-2"
+              >Contacto</a
+            >
+          </nav>
+
+          <!-- Botones de inicio de sesión y registro para pantallas grandes -->
+          <div class="hidden lg:flex space-x-2">
+            <button
+              class="text-title hover:bg-gray-100 loginButton button cursor-pointer"
+            >
+              Acceder
+            </button>
+            <button
+              class="border border-transparent text-white bg-primary hover:bg-primary-alt registerButton button shadow-sm cursor-pointer"
+            >
+              Registrarse
+            </button>
+          </div>
+
+          <!-- Botón de menú para pantallas pequeñas -->
+          <button
+            id="menuToggle"
+            class="lg:hidden text-title hover:text-title focus:outline-none"
+            aria-label="Abrir menú"
+          >
+            <svg
+              class="menu-icon w-8 h-8"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" class="line line1" />
+              <line x1="3" y1="12" x2="21" y2="12" class="line line2" />
+              <line x1="3" y1="18" x2="21" y2="18" class="line line3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menú Mobile -->
+    <div class="lg:hidden">
+      <div
+        id="menu"
+        class="fixed top-16 left-0 right-0 z-40 px-4 sm:px-6 lg:px-8 hidden"
+      >
+        <div class="p-5 bg-white shadow-lg rounded-lg">
+          <nav class="space-y-4 mt-2">
+            <a href="#" class="block text-text font-medium text-lg">Inicio</a>
+            <a href="#" class="block text-text font-medium text-lg"
+              >Instalaciones</a
+            >
+            <a href="#" class="block text-text font-medium text-lg"
+              >Especialidades</a
+            >
+            <a href="#" class="block text-text font-medium text-lg">Blog</a>
+            <a href="#" class="block text-text font-medium text-lg">Contacto</a>
+          </nav>
+          <div class="mt-6 flex w-full gap-2">
+            <button
+              class="flex-1 px-4 py-2 border border-[#16161626] text-title loginButton button"
+            >
+              Acceder
+            </button>
+            <button
+              class="flex-1 px-4 py-2 border border-transparent text-white bg-primary registerButton button"
+            >
+              Registrarse
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--==================== INICIO ====================-->
+    <section class="bg-primary-lighten pt-16">
+      <div
+        class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative grid gap-16 lg:gap-0 lg:grid-cols-2 lg:items-center"
+      >
+        <div
+          class="flex flex-col items-center text-center lg:items-start lg:text-left px-4"
+        >
+          <div
+            class="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-lg text-sm font-medium mb-4"
+          >
+            Cuidado Dental Avanzado
+          </div>
+          <h1
+            class="mb-6 text-[34px] leading-none font-bold tracking-tight sm:text-5xl md:max-w-[600px] xl:text-6xl text-balance"
+          >
+            Bienvenido a la
+            <span class="relative"
+              >excelencia dental
+              <div
+                class="absolute bottom-2 left-0 h-[4px] w-full bg-primary/50"
+              ></div
+            ></span>
+            en
+            <span class="text-primary">Odonto365</span>
+          </h1>
+          <p class="mb-8 max-w-lg text-text-color text-lg">
+            Experimente el futuro de la odontología: rápida, segura y adaptada
+            para la comodidad y confianza de la próxima generación.
+          </p>
+          <div
+            class="mb-8 w-full lg:max-w-lg flex justify-between gap-4 lg:justify-start md:max-w-[600px]"
+          >
+            <a
+              href="#"
+              class="h-12 w-full flex justify-center gap-1 items-center focus:outline-none text-title border lg:border-none border-[#16161626] md:hover:bg-gray-100 button button-animated"
+            >
+              Conócenos <i class="ri-arrow-right-up-line button-icon"></i>
+            </a>
+            <a
+              href="#"
+              class="h-12 w-full flex justify-center items-center focus:outline-none border border-transparent text-white bg-primary hover:bg-primary-alt registerButton button shadow-sm"
+            >
+              Contáctanos
+            </a>
+          </div>
+        </div>
+
+        <div class="relative mx-auto">
+          <img
+            src="src/img/hero.png"
+            alt="Persona mostrando datos de DentalCare"
+            class="mx-auto h-auto w-full max-w-md object-contain lg:max-w-lg"
+          />
+          <div class="absolute inset-0">
+            <div
+              id="userCard"
+              class="absolute right-4 top-4 flex items-center space-x-3 rounded-xl bg-white p-3 shadow-lg transition-all lg:right-0 lg:top-0"
+            >
+              <div class="flex -space-x-2">
+                <img
+                  src="src/img/user1.jpeg"
+                  alt="User 1"
+                  class="h-8 w-8 rounded-full border-2 border-white"
+                />
+                <img
+                  src="src/img/user2.jpeg"
+                  alt="User 2"
+                  class="h-8 w-8 rounded-full border-2 border-white"
+                />
+                <img
+                  src="src/img/user3.jpeg"
+                  alt="User 3"
+                  class="h-8 w-8 rounded-full border-2 border-white"
+                />
+              </div>
+              <div class="flex flex-col">
+                <span class="font-bold">120K+</span>
+                <span class="text-base text-gray-500"
+                  >Usuarios satisfechos</span
+                >
+              </div>
+            </div>
+            <div
+              id="paymentCard"
+              class="absolute bottom-4 left-4 rounded-xl bg-white p-6 shadow-lg transition-all md:-bottom-16 md:left-0 md:p-4"
+            >
+              <div class="space-y-2">
+                <h3 class="text-xl font-semibold mb-2">
+                  Tratamientos realizados
+                </h3>
+                <div class="text-3xl font-bold text-primary">+35,890</div>
+                <div class="flex items-center justify-between">
+                  <span class="text-base text-gray-500">1 Ene, 2024 </span>
+                  <div class="flex items-center space-x-1 text-green-500">
+                    <span>satisfaccion</span>
+                    <span class="text-base">98%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== INSTALACIONES Y MAS ====================-->
+    <section
+      class="w-full py-12 md:py-24 lg:pb-32 lg:pt-46 bg-gradient-to-b from-body to-primary-lighten"
+    >
+      <div class="container mx-auto px-4 md:px-6">
+        <!-- Header -->
+        <div
+          class="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+        >
+          <div class="space-y-2">
+            <div
+              class="inline-block rounded-lg bg-primary/10 text-primary px-3 py-1 text-sm font-medium"
+            >
+              Nuestras Instalaciones
+            </div>
+            <h2
+              class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-title"
+            >
+              Consultorio Médico Moderno
+            </h2>
+            <p
+              class="max-w-[700px] text-text md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
+            >
+              Contamos con instalaciones de última generación diseñadas para
+              brindar la mejor atención médica en un ambiente cómodo y
+              profesional.
+            </p>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-12"
+        >
+          <!-- Information Column -->
+          <div class="flex flex-col justify-center space-y-6">
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-title">
+                Equipamiento de Vanguardia
+              </h3>
+              <p class="text-text leading-relaxed">
+                Nuestro consultorio está equipado con la más moderna tecnología
+                médica para garantizar diagnósticos precisos y tratamientos
+                efectivos.
+              </p>
+            </div>
+
+            <!-- Features List -->
+            <ul class="grid gap-4">
+              <li class="flex items-start gap-3">
+                <i
+                  data-lucide="check-circle"
+                  class="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-title">
+                    Salas de Consulta Privadas
+                  </h4>
+                  <p class="text-sm text-text">
+                    Espacios cómodos y privados para cada consulta
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i
+                  data-lucide="check-circle"
+                  class="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-title">
+                    Equipos de Diagnóstico
+                  </h4>
+                  <p class="text-sm text-text">
+                    Tecnología avanzada para estudios precisos
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i
+                  data-lucide="check-circle"
+                  class="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-title">
+                    Sala de Espera Confortable
+                  </h4>
+                  <p class="text-sm text-text">
+                    Ambiente relajante y acogedor para nuestros pacientes
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i
+                  data-lucide="check-circle"
+                  class="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0"
+                ></i>
+                <div>
+                  <h4 class="font-semibold text-title">
+                    Protocolos de Higiene
+                  </h4>
+                  <p class="text-sm text-text">
+                    Estrictas medidas de limpieza y desinfección
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <!-- Contact Info -->
+            <div class="bg-primary-lighten/50 rounded-lg p-6 space-y-3">
+              <h4 class="font-semibold text-title mb-3">
+                Información de Contacto
+              </h4>
+              <div class="flex items-center gap-3 text-sm text-text">
+                <i data-lucide="map-pin" class="h-4 w-4 text-blue-600"></i>
+                <span>Av. Principal 123, Centro Médico, Ciudad</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm text-text">
+                <i data-lucide="clock" class="h-4 w-4 text-blue-600"></i>
+                <span
+                  >Lun - Vie: 8:00 AM - 6:00 PM | Sáb: 9:00 AM - 2:00 PM</span
+                >
+              </div>
+              <div class="flex items-center gap-3 text-sm text-text">
+                <i data-lucide="phone" class="h-4 w-4 text-blue-600"></i>
+                <span>(555) 123-4567</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Images Column -->
+          <div class="grid gap-3 py-7">
+            <!-- Main Image -->
+            <div class="relative">
+              <img
+                src="src/img/instalaciones.png"
+                alt="Sala de espera del consultorio médico"
+                class="w-full rounded-xl object-cover shadow-lg"
+              />
+              <div
+                class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2"
+              >
+                <p class="text-sm font-medium text-title">Sala de Espera</p>
+              </div>
+            </div>
+
+            <!-- Secondary Images Grid -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="relative">
+                <img
+                  src="src/img/consultorio.png"
+                  width="190"
+                  height="160"
+                  alt="Sala de consulta médica"
+                  class="w-full rounded-lg object-cover shadow-md"
+                />
+                <div
+                  class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                >
+                  <p class="text-xs font-medium text-title">Consultorio</p>
+                </div>
+              </div>
+              <div class="relative">
+                <img
+                  src="src/img/equipos.png"
+                  width="190"
+                  height="160"
+                  alt="Sala de equipos médicos"
+                  class="w-full rounded-lg object-cover shadow-md"
+                />
+                <div
+                  class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                >
+                  <p class="text-xs font-medium text-title">Equipos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- tarjetas Grid -->
+        <div
+          class="grid gap-6 mb-12 md:grid-cols-[repeat(2,1fr)] md:grid-rows-2 md:w-full md:max-w-4xl md:mx-auto"
+        >
+          <!-- tarjeta 1 -->
+          <div class="bg-body shadow-lg rounded-lg relative">
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Quisque augue.</h3>
+              <p class="text-text">
+                Quisque tempus malesuada ex, nec congue lacus euismod volutpat.
+                Pellentesque facilisis dictum aliquam. Donec arcu ex.
+              </p>
+            </div>
+          </div>
+
+          <!-- tarjeta 2 -->
+          <div class="bg-body shadow-lg rounded-lg relative">
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Suspendisse eu.</h3>
+              <p class="text-text">
+                Praesent aliquet massa et pretium molestie. Morbi in posuere
+                est. Donec vel ante mauris. Pellentesque facilisis, sem in.
+              </p>
+            </div>
+          </div>
+
+          <!-- tarjeta 3 -->
+          <div
+            class="bg-body shadow-lg rounded-lg relative md:col-span-2 md:w-2/3 md:mx-auto"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Curabitur tincidunt.</h3>
+              <p class="text-text">
+                Proin venenatis auctor egestas. Pellentesque id ipsum nisi.
+                Morbi porttitor blandit sem eget lacinia. Pellentesque ac
+                malesuada nunc. Aliquam tincidunt.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monitor and Manage Section -->
+      </div>
+    </section>
+
+    <!--==================== ESPECIALIDADES ====================-->
+    <section class="w-full bg-gradient-to-b from-primary-lighten to-body">
+      <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+          <div
+            class="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          >
+            Especialidades
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-medium tracking-tight text-title max-w-2xl mx-auto"
+          >
+            Diferentes tipos especialidades dentales para tu salud bucal
+          </h2>
+        </div>
+        <div
+          class="grid gap-6 mb-12 md:grid-cols-[repeat(2,1fr)] xl:grid-cols-[repeat(3,1fr)]"
+        >
+          <!-- Servicio 1 -->
+          <a
+            href="1"
+            class="bg-body shadow-lg rounded-lg relative hover:shadow-xl transition-shadow duration-300"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-2 text-primary text-3xl">
+                <i class="ri-tooth-line"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Odontología General</h3>
+              <p class="text-text">
+                Servicios básicos de limpieza dental, empastes y tratamientos
+                preventivos para mantener su salud bucal.
+              </p>
+            </div>
+          </a>
+
+          <!-- Service 2 -->
+          <a
+            href="#"
+            class="bg-body shadow-lg rounded-lg relative hover:shadow-xl transition-shadow duration-300"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-2 text-primary text-3xl">
+                <i class="ri-user-smile-line"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Ortodoncia</h3>
+              <p class="text-text">
+                Corrección de la alineación dental y problemas de mordida para
+                una sonrisa perfecta.
+              </p>
+            </div>
+          </a>
+
+          <!-- Service 3 -->
+          <a
+            href="#"
+            class="bg-body shadow-lg rounded-lg relative hover:shadow-xl transition-shadow duration-300"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-2 text-primary text-3xl">
+                <i class="ri-microscope-line"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Endodoncia</h3>
+              <p class="text-text">
+                Tratamiento especializado de conductos radiculares para salvar
+                dientes dañados.
+              </p>
+            </div>
+          </a>
+
+          <!-- Service 1 -->
+          <a
+            href="#"
+            class="bg-body shadow-lg rounded-lg relative hover:shadow-xl transition-shadow duration-300"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-2 text-primary text-3xl">
+                <i class="ri-tooth-line"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Odontología General</h3>
+              <p class="text-text">
+                Servicios básicos de limpieza dental, empastes y tratamientos
+                preventivos para mantener su salud bucal.
+              </p>
+            </div>
+          </a>
+
+          <!-- Service 2 -->
+          <a
+            href="#"
+            class="bg-body shadow-lg rounded-lg relative hover:shadow-xl transition-shadow duration-300"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-2 text-primary text-3xl">
+                <i class="ri-user-smile-line"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Ortodoncia</h3>
+              <p class="text-text">
+                Corrección de la alineación dental y problemas de mordida para
+                una sonrisa perfecta.
+              </p>
+            </div>
+          </a>
+
+          <!-- Service 3 -->
+          <a
+            href="#"
+            class="bg-body shadow-lg rounded-lg relative hover:shadow-xl transition-shadow duration-300"
+          >
+            <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+              <div class="flex items-center justify-center"></div>
+              <div class="flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-100"></div>
+              </div>
+            </div>
+            <div class="p-6 relative">
+              <div class="mb-2 text-primary text-3xl">
+                <i class="ri-microscope-line"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Endodoncia</h3>
+              <p class="text-text">
+                Tratamiento especializado de conductos radiculares para salvar
+                dientes dañados.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== BLOG ====================-->
+    <section
+      class="w-full py-16 md:py-32 lg:py-48 bg-gradient-to-b from-body to-primary-lighten"
+    >
+      <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+          <div
+            class="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-lg text-sm font-medium mb-4"
+          >
+            Nuestro Blog
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-medium tracking-tight text-title max-w-2xl mx-auto"
+          >
+            Lea nuestros artículos y<br />encuentre respuestas a sus preguntas
+          </h2>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <article class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg mb-4">
+              <img
+                src="src/img/blog1.jpeg"
+                alt="blog1"
+                class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <h3
+              class="text-xl font-medium text-title mb-2 group-hover:text-primary transition-colors"
+            >
+              Fusce id euismod dolor, id lacinia enim: In at faucibus.
+            </h3>
+            <time class="text-sm text-text-color flex items-center gap-2">
+              <i class="ri-calendar-line"></i>Sep 4, 2024
+            </time>
+          </article>
+
+          <article class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg mb-4">
+              <img
+                src="src/img/blog2.jpeg"
+                alt="blog1"
+                class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <h3
+              class="text-xl font-medium text-title mb-2 group-hover:text-primary transition-colors"
+            >
+              Fusce id euismod dolor, id lacinia enim: In at faucibus.
+            </h3>
+            <time class="text-sm text-text-color flex items-center gap-2">
+              <i class="ri-calendar-line"></i>Sep 5, 2024
+            </time>
+          </article>
+
+          <article class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg mb-4">
+              <img
+                src="src/img/blog3.jpeg"
+                alt="blog1"
+                class="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <h3
+              class="text-xl font-medium text-title mb-2 group-hover:text-primary transition-colors"
+            >
+              Fusce id euismod dolor, id lacinia enim: In at faucibus.
+            </h3>
+            <time class="text-sm text-text-color flex items-center gap-2">
+              <i class="ri-calendar-line"></i>Sep 16, 2024
+            </time>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== CONTACTO ====================-->
+    <section
+      class="w-full py-16 md:py-32 lg:py-48 bg-gradient-to-b from-primary-lighten to-body"
+    >
+      <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div
+          class="grid lg:grid-cols-2 gap-12 xl:gap-16 bg-body shadow-md rounded-lg p-6 md:p-8 lg:p-12"
+        >
+          <!-- Contact Info -->
+          <div class="mb-8 md:mb-0 md:pr-4">
+            <h2 class="text-3xl font-medium text-title mb-8">
+              Get in touch<br />or Schedule a visit
+            </h2>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-primary"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                    ></path>
+                  </svg>
+                </div>
+                <a
+                  href="tel:(253) 456-1189"
+                  class="text-text-color hover:text-title transition-colors duration-300"
+                >
+                  (253) 456-1189
+                </a>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-primary"
+                  >
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                </div>
+                <a
+                  href="mailto:test@gmail.com"
+                  class="text-text-color hover:text-title transition-colors duration-300"
+                >
+                  test@gmail.com
+                </a>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-primary"
+                  >
+                    <path
+                      d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                    ></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <a
+                  href="#"
+                  class="text-text-color hover:text-title transition-colors duration-300"
+                >
+                  8400 Division Ave. NY 10314
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="bg-white rounded-lg p-6">
+            <form id="contactForm" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="firstName"
+                    class="block text-sm font-medium text-title mb-1"
+                  >
+                    Nombre
+                  </label>
+                  <div class="relative">
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      placeholder="Ingrese su nombre"
+                      required
+                      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <span
+                      class="absolute inset-y-0 right-2 flex items-center hidden"
+                    >
+                      <svg
+                        class="h-5 w-5 text-teal-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="mt-1 text-sm text-red-600 hidden">
+                    El nombre solo debe contener letras y espacios.
+                  </p>
+                </div>
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Jane Smith"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Phone number</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="(123) 456 789"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="test@gmail.com"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Write your idea"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[120px]"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full text-white bg-primary hover:bg-primary-alt button shadow-s py-2 px-4 rounded-md transition-colors duration-200 cursor-pointer"
+              >
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="src/js/main.js"></script>
+
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Optional: Add some interactivity
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add hover effects to images
+        const images = document.querySelectorAll("img");
+        images.forEach((img) => {
+          img.addEventListener("mouseenter", function () {
+            this.style.transform = "scale(1.02)";
+            this.style.transition = "transform 0.3s ease";
+          });
+
+          img.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+          });
+        });
+
+        // Add click functionality to contact info
+        const phoneElement = document.querySelector(
+          '[data-lucide="phone"]'
+        ).parentElement;
+        phoneElement.style.cursor = "pointer";
+        phoneElement.addEventListener("click", function () {
+          window.location.href = "tel:5551234567";
+        });
+
+        // Add smooth scroll animation for better UX
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        });
+
+        // Apply animation to feature list items
+        const listItems = document.querySelectorAll("li");
+        listItems.forEach((item, index) => {
+          item.style.opacity = "0";
+          item.style.transform = "translateY(20px)";
+          item.style.transition = `opacity 0.6s ease ${
+            index * 0.1
+          }s, transform 0.6s ease ${index * 0.1}s`;
+          observer.observe(item);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title -->
+    <title>Odonto365</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="src/img/logos/logo.ico"
+      type="image/x-icon"
+    />
+
+    <!--==================== CSS ====================-->
+
+    <!-- Remixicons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- CSS Perzonalizado -->
+    <link rel="stylesheet" href="src/css/output.css" />
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-white shadow-sm border-b border-gray-100">
+      <div class="p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between">
+          <button
+            onclick="goBack()"
+            class="flex items-center space-x-2 px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+            <span class="font-medium">Regresar</span>
+          </button>
+          <div class="text-right">
+            <h1
+              id="specialty-title"
+              class="text-xl font-semibold text-gray-900"
+            >
+              Ortodoncia
+            </h1>
+            <p class="text-sm text-gray-600">Especialistas disponibles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specialists Navigation -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="container mx-auto px-4 py-6">
+        <div id="specialists-nav" class="flex gap-4 overflow-x-auto pb-2">
+          <!-- Specialists buttons will be generated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+      <!-- Image Slider -->
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-8">
+        <img
+          src="src/img/user3.jpeg"
+          alt="Especialista"
+          class="w-full h-80 lg:h-96"
+        />
+      </div>
+
+      <!-- Description and Certifications -->
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Left Column - Specialist Information -->
+        <div>
+          <h2
+            id="specialist-name"
+            class="text-3xl font-bold text-gray-900 mb-2"
+          >
+            Dr. María González
+          </h2>
+          <span
+            id="specialist-badge"
+            class="inline-block px-3 py-1 rounded-full mb-6 text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-100"
+            >Ortodoncia</span
+          >
+          <div class="prose prose-gray max-w-none">
+            <p
+              id="specialist-description"
+              class="text-gray-700 leading-relaxed text-lg"
+            >
+              Especialista en ortodoncia con más de 15 años de experiencia...
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column - Certifications -->
+        <div>
+          <div class="bg-white rounded-lg shadow-sm border">
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-6">
+                <i data-lucide="award" class="h-6 w-6 text-blue-600"></i>
+                <h3 class="text-xl font-semibold text-gray-900">
+                  Certificaciones
+                </h3>
+              </div>
+              <div id="certifications-list" class="space-y-4">
+                <!-- Certifications will be generated here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appointment Booking Section -->
+      <div class="mt-12">
+        <div class="text-center mb-8">
+          <h3
+            id="appointment-title"
+            class="text-2xl font-semibold text-gray-900 mb-2"
+          >
+            Agendar Cita con Dr. María González
+          </h3>
+          <p class="text-gray-600">
+            Selecciona la fecha y hora de tu preferencia
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <!-- DateTime Picker -->
+          <div>
+            <div
+              class="bg-white rounded-lg shadow-sm border w-full max-w-md mx-auto"
+            >
+              <!-- Header Tabs -->
+              <div class="flex border-b">
+                <button
+                  id="date-tab"
+                  class="flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors bg-blue-50 text-blue-600 border-b-2 border-blue-600"
+                >
+                  <i data-lucide="calendar-days" class="h-4 w-4"></i>
+                  Fecha
+                </button>
+                <button
+                  id="time-tab"
+                  class="flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50 opacity-50 cursor-not-allowed"
+                >
+                  <i data-lucide="clock" class="h-4 w-4"></i>
+                  Hora
+                </button>
+              </div>
+
+              <!-- Content -->
+              <div class="p-4">
+                <!-- Date Selection -->
+                <div id="date-content" class="space-y-4">
+                  <div class="text-center">
+                    <h4 class="text-lg font-medium text-gray-900 mb-2">
+                      Selecciona una fecha
+                    </h4>
+                    <p class="text-sm text-gray-600">
+                      Los domingos no hay atención
+                    </p>
+                  </div>
+
+                  <!-- Calendar -->
+                  <div class="flex justify-center">
+                    <div class="w-full max-w-sm">
+                      <div class="flex items-center justify-between mb-4">
+                        <button
+                          id="prev-month"
+                          class="p-2 hover:bg-gray-100 rounded-md"
+                        >
+                          <i data-lucide="chevron-left" class="h-4 w-4"></i>
+                        </button>
+                        <h4
+                          id="current-month"
+                          class="text-lg font-semibold"
+                        ></h4>
+                        <button
+                          id="next-month"
+                          class="p-2 hover:bg-gray-100 rounded-md"
+                        >
+                          <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                        </button>
+                      </div>
+
+                      <!-- Days of week -->
+                      <div class="calendar-grid mb-2">
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Dom
+                        </div>
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Lun
+                        </div>
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Mar
+                        </div>
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Mié
+                        </div>
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Jue
+                        </div>
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Vie
+                        </div>
+                        <div
+                          class="text-center text-sm font-medium text-gray-500 py-2"
+                        >
+                          Sáb
+                        </div>
+                      </div>
+
+                      <!-- Calendar days -->
+                      <div id="calendar-days" class="calendar-grid">
+                        <!-- Days will be generated here -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="date-selected" class="text-center hidden">
+                    <p class="text-sm text-green-600 font-medium mb-3">
+                      Fecha seleccionada: <span id="selected-date-text"></span>
+                    </p>
+                    <button
+                      id="continue-to-time"
+                      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
+                    >
+                      Continuar a selección de hora
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Time Selection -->
+                <div id="time-content" class="space-y-4 hidden">
+                  <div class="text-center">
+                    <h4 class="text-lg font-medium text-gray-900 mb-2">
+                      Selecciona una hora
+                    </h4>
+                    <p
+                      id="selected-date-display"
+                      class="text-sm text-gray-600"
+                    ></p>
+                  </div>
+
+                  <div id="time-slots" class="grid grid-cols-3 gap-2">
+                    <!-- Time slots will be generated here -->
+                  </div>
+
+                  <div
+                    id="time-selected"
+                    class="text-center pt-4 border-t hidden"
+                  >
+                    <p class="text-sm text-green-600 font-medium mb-3">
+                      Hora seleccionada: <span id="selected-time-text"></span>
+                    </p>
+                    <button
+                      id="change-date"
+                      class="border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-md transition-colors mr-2"
+                    >
+                      Cambiar fecha
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary and Validation -->
+          <div>
+            <div class="bg-white rounded-lg shadow-sm border">
+              <div class="p-6">
+                <h4 class="text-lg font-semibold text-gray-900 mb-4">
+                  Resumen de la Cita
+                </h4>
+
+                <div class="space-y-3 mb-6">
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Especialista:</span>
+                    <span id="summary-specialist" class="font-medium"
+                      >Dr. María González</span
+                    >
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Especialidad:</span>
+                    <span id="summary-specialty" class="font-medium"
+                      >Ortodoncia</span
+                    >
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Fecha:</span>
+                    <span id="summary-date" class="font-medium"
+                      >No seleccionada</span
+                    >
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Hora:</span>
+                    <span id="summary-time" class="font-medium"
+                      >No seleccionada</span
+                    >
+                  </div>
+                </div>
+
+                <button
+                  id="validate-availability"
+                  class="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg rounded-md transition-colors opacity-50 cursor-not-allowed"
+                  disabled
+                >
+                  Validar Disponibilidad
+                </button>
+
+                <p
+                  id="completion-message"
+                  class="text-sm text-gray-500 mt-3 text-center"
+                >
+                  Completa la selección de fecha y hora para continuar
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock data for dental specialists
+      const specialists = [
+        {
+          id: 1,
+          name: "Dr. María González",
+          specialty: "Ortodoncia",
+          description:
+            "Especialista en ortodoncia con más de 15 años de experiencia en el diagnóstico y tratamiento de maloclusiones dentales. Graduada de la Universidad Nacional con especialización en ortodoncia invisible y brackets estéticos. Experta en tratamientos con Invisalign y sistemas de ortodoncia lingual.",
+          images: [
+            "/placeholder.svg?height=400&width=600&text=Dr.+María+González+1",
+            "/placeholder.svg?height=400&width=600&text=Dr.+María+González+2",
+            "/placeholder.svg?height=400&width=600&text=Dr.+María+González+3",
+          ],
+          certifications: [
+            "Especialización en Ortodoncia - Universidad Nacional",
+            "Certificación Invisalign Diamond Provider",
+            "Diplomado en Ortodoncia Lingual",
+            "Certificación en Ortodoncia Interceptiva",
+            "Miembro de la Sociedad de Ortodoncia",
+          ],
+        },
+        {
+          id: 2,
+          name: "Dr. Carlos Rodríguez",
+          specialty: "Cirugía Oral",
+          description:
+            "Cirujano oral y maxilofacial especializado en implantes dentales, extracciones complejas y cirugía reconstructiva. Con experiencia internacional en técnicas avanzadas de regeneración ósea y cirugía guiada por computadora.",
+          images: [
+            "/placeholder.svg?height=400&width=600&text=Dr.+Carlos+Rodríguez+1",
+            "/placeholder.svg?height=400&width=600&text=Dr.+Carlos+Rodríguez+2",
+            "/placeholder.svg?height=400&width=600&text=Dr.+Carlos+Rodríguez+3",
+          ],
+          certifications: [
+            "Especialización en Cirugía Oral y Maxilofacial",
+            "Certificación en Implantología Avanzada",
+            "Diplomado en Regeneración Ósea Guiada",
+            "Certificación en Cirugía Guiada por Computadora",
+            "Miembro del Colegio de Cirujanos Orales",
+          ],
+        },
+        {
+          id: 3,
+          name: "Dra. Ana Martínez",
+          specialty: "Endodoncia",
+          description:
+            "Endodoncista especializada en tratamientos de conducto y microcirugía endodóntica. Pionera en el uso de microscopio dental y técnicas de endodoncia regenerativa para preservar la vitalidad pulpar.",
+          images: [
+            "/placeholder.svg?height=400&width=600&text=Dra.+Ana+Martínez+1",
+            "/placeholder.svg?height=400&width=600&text=Dra.+Ana+Martínez+2",
+            "/placeholder.svg?height=400&width=600&text=Dra.+Ana+Martínez+3",
+          ],
+          certifications: [
+            "Especialización en Endodoncia",
+            "Certificación en Microcirugía Endodóntica",
+            "Diplomado en Endodoncia Regenerativa",
+            "Certificación en Microscopía Dental",
+            "Miembro de la Asociación de Endodoncistas",
+          ],
+        },
+        {
+          id: 4,
+          name: "Dr. Luis Fernández",
+          specialty: "Periodoncia",
+          description:
+            "Periodoncista especializado en el tratamiento de enfermedades de las encías y tejidos de soporte dental. Experto en cirugía plástica periodontal y técnicas de regeneración tisular guiada.",
+          images: [
+            "/placeholder.svg?height=400&width=600&text=Dr.+Luis+Fernández+1",
+            "/placeholder.svg?height=400&width=600&text=Dr.+Luis+Fernández+2",
+            "/placeholder.svg?height=400&width=600&text=Dr.+Luis+Fernández+3",
+          ],
+          certifications: [
+            "Especialización en Periodoncia",
+            "Certificación en Cirugía Plástica Periodontal",
+            "Diplomado en Regeneración Tisular Guiada",
+            "Certificación en Láser Terapia Periodontal",
+            "Miembro de la Sociedad de Periodoncia",
+          ],
+        },
+      ];
+
+      // State variables
+      let selectedSpecialist = specialists[0];
+      let currentImageIndex = 0;
+      let selectedDate = null;
+      let selectedTime = "";
+      let currentMonth = new Date().getMonth();
+      let currentYear = new Date().getFullYear();
+      let activeTab = "date";
+
+      // Constants
+      const timeSlots = [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+      ];
+      const monthNames = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+
+      // Utility functions
+      function getElementById(id) {
+        return document.getElementById(id);
+      }
+
+      function addClass(element, className) {
+        element.classList.add(className);
+      }
+
+      function removeClass(element, className) {
+        element.classList.remove(className);
+      }
+
+      function toggleClass(element, className) {
+        element.classList.toggle(className);
+      }
+
+      // Initialize the page
+      function init() {
+        const lucide = window.lucide; // Declare the lucide variable here
+        if (lucide) {
+          lucide.createIcons();
+        }
+        renderSpecialistsNav();
+        updateSpecialistInfo();
+        renderCalendar();
+        renderTimeSlots();
+        setupEventListeners();
+      }
+
+      // Render specialists navigation
+      function renderSpecialistsNav() {
+        const nav = getElementById("specialists-nav");
+        nav.innerHTML = specialists
+          .map((specialist) => {
+            const isSelected = specialist.id === selectedSpecialist.id;
+            const buttonClass = isSelected
+              ? "bg-blue-600 hover:bg-blue-700 text-white"
+              : "border border-gray-300 hover:bg-gray-50 text-gray-700";
+
+            return `
+            <button class="specialist-btn whitespace-nowrap px-4 py-2 rounded-md transition-colors ${buttonClass}" data-id="${specialist.id}">
+                ${specialist.name}
+            </button>
+        `;
+          })
+          .join("");
+      }
+
+      // Update specialist information
+      function updateSpecialistInfo() {
+        getElementById("specialty-title").textContent =
+          selectedSpecialist.specialty;
+        getElementById("specialist-name").textContent = selectedSpecialist.name;
+        getElementById("specialist-badge").textContent =
+          selectedSpecialist.specialty;
+        getElementById("specialist-description").textContent =
+          selectedSpecialist.description;
+        getElementById(
+          "appointment-title"
+        ).textContent = `Agendar Cita con ${selectedSpecialist.name}`;
+        getElementById("summary-specialist").textContent =
+          selectedSpecialist.name;
+        getElementById("summary-specialty").textContent =
+          selectedSpecialist.specialty;
+
+        // Update main image
+        getElementById("main-image").src =
+          selectedSpecialist.images[currentImageIndex];
+
+        // Update image indicators
+        const indicators = getElementById("image-indicators");
+        indicators.innerHTML = selectedSpecialist.images
+          .map((_, index) => {
+            const indicatorClass =
+              index === currentImageIndex ? "bg-white" : "bg-white/50";
+            return `<button class="w-2 h-2 rounded-full indicator-btn ${indicatorClass}" data-index="${index}"></button>`;
+          })
+          .join("");
+
+        // Update certifications
+        const certificationsList = getElementById("certifications-list");
+        certificationsList.innerHTML = selectedSpecialist.certifications
+          .map(
+            (cert) => `
+        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors fade-in">
+            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+            <p class="text-gray-700 leading-relaxed">${cert}</p>
+        </div>
+    `
+          )
+          .join("");
+      }
+
+      // Render calendar
+      function renderCalendar() {
+        const currentMonthElement = getElementById("current-month");
+        currentMonthElement.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+        const calendarDays = getElementById("calendar-days");
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(
+          currentYear,
+          currentMonth + 1,
+          0
+        ).getDate();
+        const today = new Date();
+
+        let daysHTML = "";
+
+        // Empty cells for days before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+          daysHTML += '<div class="calendar-day other-month"></div>';
+        }
+
+        // Days of the current month
+        for (let day = 1; day <= daysInMonth; day++) {
+          const date = new Date(currentYear, currentMonth, day);
+          const isToday = date.toDateString() === today.toDateString();
+          const isPast = date < today && !isToday;
+          const isSunday = date.getDay() === 0;
+          const isSelected =
+            selectedDate && date.toDateString() === selectedDate.toDateString();
+
+          let classes = "calendar-day text-sm";
+          if (isPast || isSunday) {
+            classes += " disabled";
+          } else if (isSelected) {
+            classes += " selected";
+          } else if (isToday) {
+            classes += " bg-blue-100 text-blue-600 font-semibold";
+          }
+
+          daysHTML += `<div class="${classes}" data-date="${currentYear}-${currentMonth}-${day}">${day}</div>`;
+        }
+
+        calendarDays.innerHTML = daysHTML;
+      }
+
+      // Render time slots
+      function renderTimeSlots() {
+        const timeSlotsContainer = getElementById("time-slots");
+        timeSlotsContainer.innerHTML = timeSlots
+          .map((time) => {
+            const isSelected = selectedTime === time;
+            const buttonClass = isSelected
+              ? "bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
+              : "border-gray-300 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 text-gray-700";
+
+            return `
+            <button class="time-slot h-12 text-sm px-4 py-2 rounded-md border transition-colors ${buttonClass}" data-time="${time}">
+                ${time}
+            </button>
+        `;
+          })
+          .join("");
+      }
+
+      // Event handlers
+      function handleSpecialistClick(e) {
+        if (e.target.classList.contains("specialist-btn")) {
+          const specialistId = Number.parseInt(e.target.dataset.id);
+          selectedSpecialist = specialists.find((s) => s.id === specialistId);
+          currentImageIndex = 0;
+          selectedDate = null;
+          selectedTime = "";
+          renderSpecialistsNav();
+          updateSpecialistInfo();
+          resetDateTimePicker();
+          updateSummary();
+        }
+      }
+
+      function handleImageNavigation(direction) {
+        if (direction === "prev") {
+          currentImageIndex =
+            currentImageIndex === 0
+              ? selectedSpecialist.images.length - 1
+              : currentImageIndex - 1;
+        } else {
+          currentImageIndex =
+            currentImageIndex === selectedSpecialist.images.length - 1
+              ? 0
+              : currentImageIndex + 1;
+        }
+        updateSpecialistInfo();
+      }
+
+      function handleIndicatorClick(e) {
+        if (e.target.classList.contains("indicator-btn")) {
+          currentImageIndex = Number.parseInt(e.target.dataset.index);
+          updateSpecialistInfo();
+        }
+      }
+
+      function handleCalendarNavigation(direction) {
+        if (direction === "prev") {
+          if (currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+          } else {
+            currentMonth--;
+          }
+        } else {
+          if (currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+          } else {
+            currentMonth++;
+          }
+        }
+        renderCalendar();
+      }
+
+      function handleDateSelection(e) {
+        if (
+          e.target.classList.contains("calendar-day") &&
+          !e.target.classList.contains("disabled") &&
+          !e.target.classList.contains("other-month")
+        ) {
+          const dateData = e.target.dataset.date;
+          if (dateData) {
+            const [year, month, day] = dateData.split("-").map(Number);
+            selectedDate = new Date(year, month, day);
+            renderCalendar();
+            showDateSelected();
+            updateSummary();
+          }
+        }
+      }
+
+      function handleTimeSelection(e) {
+        if (e.target.classList.contains("time-slot")) {
+          selectedTime = e.target.dataset.time;
+          renderTimeSlots();
+          showTimeSelected();
+          updateSummary();
+        }
+      }
+
+      function handleValidateAvailability() {
+        if (selectedDate && selectedTime) {
+          alert(
+            `Validando disponibilidad para ${
+              selectedSpecialist.name
+            } el ${selectedDate.toLocaleDateString(
+              "es-ES"
+            )} a las ${selectedTime}`
+          );
+        }
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        // Specialist navigation
+        document.addEventListener("click", handleSpecialistClick);
+
+        // Image navigation
+        getElementById("prev-image").addEventListener("click", () =>
+          handleImageNavigation("prev")
+        );
+        getElementById("next-image").addEventListener("click", () =>
+          handleImageNavigation("next")
+        );
+
+        // Image indicators
+        document.addEventListener("click", handleIndicatorClick);
+
+        // Calendar navigation
+        getElementById("prev-month").addEventListener("click", () =>
+          handleCalendarNavigation("prev")
+        );
+        getElementById("next-month").addEventListener("click", () =>
+          handleCalendarNavigation("next")
+        );
+
+        // Date selection
+        document.addEventListener("click", handleDateSelection);
+
+        // Tab navigation
+        getElementById("date-tab").addEventListener("click", () =>
+          switchTab("date")
+        );
+        getElementById("time-tab").addEventListener("click", () => {
+          if (selectedDate) switchTab("time");
+        });
+        getElementById("continue-to-time").addEventListener("click", () =>
+          switchTab("time")
+        );
+        getElementById("change-date").addEventListener("click", () =>
+          switchTab("date")
+        );
+
+        // Time selection
+        document.addEventListener("click", handleTimeSelection);
+
+        // Validate availability
+        getElementById("validate-availability").addEventListener(
+          "click",
+          handleValidateAvailability
+        );
+      }
+
+      // Switch between date and time tabs
+      function switchTab(tab) {
+        activeTab = tab;
+        const dateTab = getElementById("date-tab");
+        const timeTab = getElementById("time-tab");
+        const dateContent = getElementById("date-content");
+        const timeContent = getElementById("time-content");
+
+        if (tab === "date") {
+          dateTab.className =
+            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors bg-blue-50 text-blue-600 border-b-2 border-blue-600";
+          timeTab.className =
+            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50" +
+            (selectedDate ? "" : " opacity-50 cursor-not-allowed");
+          removeClass(dateContent, "hidden");
+          addClass(timeContent, "hidden");
+        } else {
+          dateTab.className =
+            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50";
+          timeTab.className =
+            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors bg-blue-50 text-blue-600 border-b-2 border-blue-600";
+          addClass(dateContent, "hidden");
+          removeClass(timeContent, "hidden");
+          updateTimeContent();
+        }
+      }
+
+      // Show date selected message
+      function showDateSelected() {
+        const dateSelected = getElementById("date-selected");
+        const selectedDateText = getElementById("selected-date-text");
+
+        if (selectedDate) {
+          selectedDateText.textContent = selectedDate.toLocaleDateString(
+            "es-ES",
+            {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }
+          );
+          removeClass(dateSelected, "hidden");
+
+          // Enable time tab
+          const timeTab = getElementById("time-tab");
+          removeClass(timeTab, "opacity-50");
+          removeClass(timeTab, "cursor-not-allowed");
+        } else {
+          addClass(dateSelected, "hidden");
+        }
+      }
+
+      // Update time content
+      function updateTimeContent() {
+        const selectedDateDisplay = getElementById("selected-date-display");
+        if (selectedDate) {
+          selectedDateDisplay.textContent = selectedDate.toLocaleDateString(
+            "es-ES",
+            {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+            }
+          );
+        }
+      }
+
+      // Show time selected message
+      function showTimeSelected() {
+        const timeSelected = getElementById("time-selected");
+        const selectedTimeText = getElementById("selected-time-text");
+
+        if (selectedTime) {
+          selectedTimeText.textContent = selectedTime;
+          removeClass(timeSelected, "hidden");
+        } else {
+          addClass(timeSelected, "hidden");
+        }
+      }
+
+      // Update summary
+      function updateSummary() {
+        const summaryDate = getElementById("summary-date");
+        const summaryTime = getElementById("summary-time");
+        const validateBtn = getElementById("validate-availability");
+        const completionMessage = getElementById("completion-message");
+
+        summaryDate.textContent = selectedDate
+          ? selectedDate.toLocaleDateString("es-ES")
+          : "No seleccionada";
+        summaryTime.textContent = selectedTime || "No seleccionada";
+
+        if (selectedDate && selectedTime) {
+          validateBtn.disabled = false;
+          removeClass(validateBtn, "opacity-50");
+          removeClass(validateBtn, "cursor-not-allowed");
+          addClass(completionMessage, "hidden");
+        } else {
+          validateBtn.disabled = true;
+          addClass(validateBtn, "opacity-50");
+          addClass(validateBtn, "cursor-not-allowed");
+          removeClass(completionMessage, "hidden");
+        }
+      }
+
+      // Reset date time picker
+      function resetDateTimePicker() {
+        switchTab("date");
+        addClass(getElementById("date-selected"), "hidden");
+        addClass(getElementById("time-selected"), "hidden");
+        renderCalendar();
+        renderTimeSlots();
+      }
+
+      // Initialize the page when DOM is loaded
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
+</html>
