@@ -1,0 +1,83 @@
+/* FUENTES */
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* ========== Fonts ========== */
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Lato", sans-serif;
+
+  /* ========== Colors ========== */
+  --color-primario: hsl(210, 100%, 40%);
+  --color-secundario: hsl(210, 80%, 75%);
+
+  --color-fondo-principal: hsl(0, 0%, 100%);
+  --color-fondo-alternativo: hsl(210, 70%, 95%);
+
+  --color-titulos: hsl(210, 100%, 20%);
+  --color-textos: hsl(210, 50%, 40%);
+
+  --color-botones-destacados: hsl(210, 90%, 50%);
+  --color-botones-destacados-alternativo: hsl(210, 90%, 40%);
+  --color-bordes: hsl(210, 40%, 90%);
+}
+
+/* <!--==================== COMPONENTS ====================--> */
+@layer components {
+  /* Menu icon */
+  .menu-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .menu-icon .line {
+    stroke: currentColor;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .menu-open .line1 {
+    transform: rotate(45deg) translate(0, 6px);
+  }
+  .menu-open .line2 {
+    opacity: 0;
+  }
+  .menu-open .line3 {
+    transform: rotate(-45deg) translate(0, -6px);
+  }
+
+  #menu {
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+    display: block !important;
+    pointer-events: none;
+  }
+
+  #menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200;
+    &.primario {
+      @apply shadow-md border border-transparent text-fondo-principal bg-botones-destacados hover:bg-botones-destacados-alternativo;
+      &.movil {
+        @apply flex-1 text-center;
+      }
+    }
+    &.secundario {
+      @apply text-titulos hover:bg-fondo-principal;
+      &.movil {
+        @apply flex-1 text-center border border-bordes;
+      }
+    }
+  }
+
+  /* encabezado */
+  .encabezado {
+    @apply inline-block bg-botones-destacados/15 text-textos text-sm md:text-base font-semibold px-3 py-1 rounded-full mb-4;
+  }
+}
