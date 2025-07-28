@@ -115,4 +115,33 @@
   .encabezado {
     @apply px-3 py-1 md:px-4 md:py-2 lg:px-5 lg:py-2 rounded-full text-sm md:text-base lg:text-lg font-medium;
   }
+
+  /* Datetime picker */
+  /* Custom styles for the new calendar/time picker */
+  .calendar-grid {
+    @apply grid grid-cols-7 gap-2 p-1;
+  }
+  .calendar-day {
+    @apply flex items-center justify-center rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg text-textos bg-bordes/20 hover:bg-fondo-principal;
+  }
+  .calendar-day.selectable:hover {
+    @apply hover:bg-bordes cursor-pointer;
+  }
+  .calendar-day.selected {
+    @apply bg-botones-destacados text-fondo-principal;
+  }
+  .calendar-day.disabled {
+    @apply bg-gray-100 text-gray-400 cursor-not-allowed;
+  }
+
+  .time-slot-button {
+    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg text-titulos hover:bg-fondo-principal flex-1 text-center border border-bordes;
+  }
+
+  .time-slot-button.selected {
+    @apply bg-botones-destacados text-fondo-principal;
+  }
+  .time-slot-button.disabled {
+    @apply bg-gray-100 text-gray-400 cursor-not-allowed;
+  }
 }

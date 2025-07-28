@@ -15,69 +15,6 @@
 
     <!-- CSS Perzonalizado -->
     <link rel="stylesheet" href="src/css/output.css" />
-    <style>
-      body {
-        font-family: "Lato", sans-serif;
-      }
-      /* Custom styles for the new calendar/time picker */
-      .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 0.25rem; /* Small gap between cells */
-      }
-      .calendar-day {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.75rem; /* Slightly larger for better touch */
-        height: 2.75rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        color: #374151; /* gray-700 */
-        transition: background-color 0.2s, color 0.2s;
-      }
-      .calendar-day.selectable:hover {
-        background-color: #e5e7eb; /* gray-200 */
-        cursor: pointer;
-      }
-      .calendar-day.selected {
-        background-color: #3b82f6; /* blue-500 */
-        color: white;
-        font-weight: 700;
-      }
-      .calendar-day.disabled {
-        color: #d1d5db; /* gray-300 */
-        cursor: not-allowed;
-      }
-      .time-slot-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        color: #374151;
-        background-color: #f9fafb; /* light gray */
-        border: 1px solid #e5e7eb; /* gray-200 */
-        transition: background-color 0.2s, border-color 0.2s;
-      }
-      .time-slot-button:hover {
-        background-color: #e5e7eb;
-        border-color: #d1d5db;
-      }
-      .time-slot-button.selected {
-        background-color: #3b82f6;
-        color: white;
-        border-color: #3b82f6;
-        font-weight: 700;
-      }
-      .time-slot-button.disabled {
-        background-color: #f3f4f6; /* gray-100 */
-        color: #9ca3af; /* gray-400 */
-        border-color: #e5e7eb;
-        cursor: not-allowed;
-      }
-    </style>
   </head>
   <body class="bg-fondo-alternativo/30 min-h-screen">
     <!-- Header -->
