@@ -23,6 +23,41 @@
 }
 
 /* <!--==================== COMPONENTS ====================--> */
+@layer base {
+  /* headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-titulos;
+  }
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold;
+  }
+  h4 {
+    @apply text-lg md:text-xl lg:text-2xl font-semibold;
+  }
+  h5 {
+    @apply text-base md:text-lg lg:text-xl font-semibold;
+  }
+  h6 {
+    @apply text-sm md:text-base lg:text-lg font-semibold;
+  }
+
+  /*paragraphs */
+  p {
+    @apply font-body text-textos text-base lg:text-lg xl:text-xl leading-relaxed;
+  }
+}
+
 @layer components {
   /* Menu icon */
   .menu-icon {
@@ -61,9 +96,9 @@
 
   /* Buttons */
   .btn {
-    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200;
+    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg;
     &.primario {
-      @apply shadow-md border border-transparent text-fondo-principal bg-botones-destacados hover:bg-botones-destacados-alternativo;
+      @apply shadow-sm border border-transparent text-fondo-principal bg-botones-destacados hover:bg-botones-destacados-alternativo;
       &.movil {
         @apply flex-1 text-center;
       }
@@ -78,6 +113,6 @@
 
   /* encabezado */
   .encabezado {
-    @apply inline-block bg-botones-destacados/15 text-textos text-sm md:text-base font-semibold px-3 py-1 rounded-full mb-4;
+    @apply px-3 py-1 md:px-4 md:py-2 lg:px-5 lg:py-2 rounded-full text-sm md:text-base lg:text-lg font-medium;
   }
 }

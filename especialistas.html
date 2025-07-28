@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,361 +7,751 @@
     <title>Odonto365</title>
 
     <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="src/img/logos/logo.ico"
-      type="image/x-icon"
-    />
 
     <!--==================== CSS ====================-->
 
-    <!-- Remixicons -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <!-- lucide -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
     <!-- CSS Perzonalizado -->
     <link rel="stylesheet" href="src/css/output.css" />
+    <style>
+      body {
+        font-family: "Lato", sans-serif;
+      }
+      /* Custom styles for the new calendar/time picker */
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.25rem; /* Small gap between cells */
+      }
+      .calendar-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem; /* Slightly larger for better touch */
+        height: 2.75rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        color: #374151; /* gray-700 */
+        transition: background-color 0.2s, color 0.2s;
+      }
+      .calendar-day.selectable:hover {
+        background-color: #e5e7eb; /* gray-200 */
+        cursor: pointer;
+      }
+      .calendar-day.selected {
+        background-color: #3b82f6; /* blue-500 */
+        color: white;
+        font-weight: 700;
+      }
+      .calendar-day.disabled {
+        color: #d1d5db; /* gray-300 */
+        cursor: not-allowed;
+      }
+      .time-slot-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        color: #374151;
+        background-color: #f9fafb; /* light gray */
+        border: 1px solid #e5e7eb; /* gray-200 */
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+      .time-slot-button:hover {
+        background-color: #e5e7eb;
+        border-color: #d1d5db;
+      }
+      .time-slot-button.selected {
+        background-color: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+        font-weight: 700;
+      }
+      .time-slot-button.disabled {
+        background-color: #f3f4f6; /* gray-100 */
+        color: #9ca3af; /* gray-400 */
+        border-color: #e5e7eb;
+        cursor: not-allowed;
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-gray-50">
+  <body class="bg-fondo-alternativo/30 min-h-screen">
     <!-- Header -->
-    <div class="bg-white shadow-sm border-b border-gray-100">
-      <div class="p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="flex items-center justify-between">
-          <button
-            onclick="goBack()"
-            class="flex items-center space-x-2 px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
-          >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              ></path>
-            </svg>
-            <span class="font-medium">Regresar</span>
-          </button>
-          <div class="text-right">
-            <h1
-              id="specialty-title"
-              class="text-xl font-semibold text-gray-900"
-            >
-              Ortodoncia
-            </h1>
-            <p class="text-sm text-gray-600">Especialistas disponibles</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <header
+      class="bg-transparent p-4 md:p-6 lg:p-8 flex justify-between items-center max-w-7xl mx-auto"
+    >
+      <a
+        href="/"
+        class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 flex justify-center items-center focus:outline-none gap-2 btn secundario border border-bordes"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-left-icon lucide-chevron-left w-5 h-5"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+        Regresar
+      </a>
 
-    <!-- Specialists Navigation -->
-    <div class="bg-white border-b border-gray-100">
-      <div class="container mx-auto px-4 py-6">
-        <div id="specialists-nav" class="flex gap-4 overflow-x-auto pb-2">
-          <!-- Specialists buttons will be generated here -->
-        </div>
+      <div class="text-right">
+        <h4 id="specialty-category">Ortodoncia</h4>
+        <p>especialistas disponibles</p>
       </div>
-    </div>
+    </header>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-8">
-      <!-- Image Slider -->
-      <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-8">
-        <img
-          src="src/img/user3.jpeg"
-          alt="Especialista"
-          class="w-full h-80 lg:h-96"
-        />
+    <main class="p-4 md:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
+      <!-- Specialists Navigation -->
+      <div>
+        <div class="flex gap-3 overflow-x-auto pb-2" id="specialists-nav">
+          <!-- Specialist buttons will be generated by JavaScript -->
+        </div>
       </div>
 
-      <!-- Description and Certifications -->
-      <div class="grid lg:grid-cols-2 gap-8">
-        <!-- Left Column - Specialist Information -->
-        <div>
-          <h2
-            id="specialist-name"
-            class="text-3xl font-bold text-gray-900 mb-2"
-          >
-            Dr. María González
-          </h2>
-          <span
-            id="specialist-badge"
-            class="inline-block px-3 py-1 rounded-full mb-6 text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-100"
-            >Ortodoncia</span
-          >
-          <div class="prose prose-gray max-w-none">
-            <p
-              id="specialist-description"
-              class="text-gray-700 leading-relaxed text-lg"
+      <!-- Mobile Layout -->
+      <div class="lg:hidden space-y-6">
+        <!-- Specialist Details -->
+        <div id="specialist-details-mobile">
+          <!-- Content will be generated by JavaScript -->
+        </div>
+
+        <!-- Certifications Card -->
+        <div
+          class="bg-principal rounded-2xl p-6 shadow-sm border border-bordes"
+          id="certifications-card-mobile"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-8 h-8 bg-botones-destacados rounded-full flex items-center justify-center"
             >
-              Especialista en ortodoncia con más de 15 años de experiencia...
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-star-icon lucide-star w-5 h-5 text-fondo-principal"
+              >
+                <path
+                  d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                />
+              </svg>
+            </div>
+            <h3>Certificaciones</h3>
+          </div>
+          <div class="space-y-4" id="certifications-list-mobile">
+            <!-- Certifications will be generated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Calendar/Time Picker Section (Mobile) -->
+        <div>
+          <h3 class="mb-2" id="appointment-title-mobile">
+            Agendar Cita con Dr. María González
+          </h3>
+          <p class="mb-6">Selecciona la fecha y hora de tu preferencia</p>
+
+          <div class="flex border-b border-gray-200 mb-6">
+            <button
+              id="tab-date-mobile"
+              class="flex-1 btn primario bg-transparent border-0 rounded-none shadow-none border-b-2 border-botones-destacados"
+            >
+              <div class="flex items-center justify-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-calendar-icon lucide-calendar w-5 h-5"
+                >
+                  <path d="M8 2v4" />
+                  <path d="M16 2v4" />
+                  <rect width="18" height="18" x="3" y="4" rx="2" />
+                  <path d="M3 10h18" />
+                </svg>
+                Fecha
+              </div>
+            </button>
+            <button
+              id="tab-time-mobile"
+              class="flex-1 btn primario bg-transparent border-0 rounded-none shadow-none border-b-2 border-botones-destacados"
+            >
+              <div class="flex items-center justify-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-clock4-icon lucide-clock-4 w-5 h-5"
+                >
+                  <path d="M12 6v6l4 2" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+                Hora
+              </div>
+            </button>
+          </div>
+
+          <div id="date-view-mobile">
+            <h4 class="mb-2">Selecciona una fecha</h4>
+            <p class="mb-4">Los domingos no hay atención</p>
+
+            <div class="flex items-center justify-between mb-4">
+              <button id="prev-month-mobile" class="btn secundario">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-chevron-left-icon lucide-chevron-left w-5 h-5"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <h5 id="current-month-year-mobile"></h5>
+              <button id="next-month-mobile" class="btn secundario">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-chevron-right-icon lucide-chevron-right w-5 h-5"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="calendar-grid mb-4">
+              <h5 class="text-center py-2">Do</h5>
+              <h5 class="text-center py-2">Lu</h5>
+              <h5 class="text-center py-2">Ma</h5>
+              <h5 class="text-center py-2">Mi</h5>
+              <h5 class="text-center py-2">Ju</h5>
+              <h5 class="text-center py-2">Vi</h5>
+              <h5 class="text-center py-2">Sá</h5>
+            </div>
+            <div class="calendar-grid" id="calendar-grid-mobile">
+              <!-- Calendar days will be generated by JavaScript -->
+            </div>
+          </div>
+
+          <div id="time-view-mobile" style="display: none">
+            <h4 class="mb-2">Selecciona una hora</h4>
+            <p class="mb-4" id="selected-date-display-mobile"></p>
+            <div class="grid grid-cols-3 gap-3" id="time-slots-grid-mobile">
+              <!-- Time slots will be generated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Appointment Summary (Mobile) -->
+        <div
+          class="bg-principal rounded-2xl p-6 shadow-sm border border-bordes"
+          id="appointment-summary-mobile"
+          style="display: none"
+        >
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            Resumen de la Cita
+          </h3>
+
+          <div class="space-y-6">
+            <!-- Specialty -->
+            <div>
+              <div class="text-gray-600 mb-2 text-sm md:text-base">
+                Especialidad
+              </div>
+              <div
+                class="bg-gray-100 rounded-lg px-4 py-2 font-medium text-base md:text-lg"
+                id="summary-specialty-mobile"
+              >
+                Ortodoncia
+              </div>
+            </div>
+
+            <!-- Specialist -->
+            <div>
+              <div class="text-gray-600 mb-2 text-sm md:text-base">
+                Especialista
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  ></path>
+                </svg>
+                <span
+                  class="font-medium text-base md:text-lg"
+                  id="summary-doctor-mobile"
+                  >Dr. María González</span
+                >
+              </div>
+            </div>
+
+            <!-- Date and Time -->
+            <div>
+              <div class="text-gray-600 mb-2 text-sm md:text-base">
+                Fecha y Hora
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  <span class="text-base md:text-lg" id="summary-date-mobile"
+                    >martes, 22 de julio de 2025</span
+                  >
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-base md:text-lg" id="summary-time-mobile"
+                    >16:00</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Validation Button -->
+            <button
+              class="w-full bg-black text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors text-base md:text-lg"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              Validar Disponibilidad
+            </button>
+
+            <p class="text-center text-sm md:text-base text-gray-500">
+              Verificaremos la disponibilidad del especialista en la fecha
+              seleccionada
             </p>
           </div>
         </div>
-
-        <!-- Right Column - Certifications -->
-        <div>
-          <div class="bg-white rounded-lg shadow-sm border">
-            <div class="p-6">
-              <div class="flex items-center gap-2 mb-6">
-                <i data-lucide="award" class="h-6 w-6 text-blue-600"></i>
-                <h3 class="text-xl font-semibold text-gray-900">
-                  Certificaciones
-                </h3>
-              </div>
-              <div id="certifications-list" class="space-y-4">
-                <!-- Certifications will be generated here -->
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- Appointment Booking Section -->
-      <div class="mt-12">
-        <div class="text-center mb-8">
-          <h3
-            id="appointment-title"
-            class="text-2xl font-semibold text-gray-900 mb-2"
-          >
-            Agendar Cita con Dr. María González
-          </h3>
-          <p class="text-gray-600">
-            Selecciona la fecha y hora de tu preferencia
-          </p>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-8 items-start">
-          <!-- DateTime Picker -->
-          <div>
+      <!-- Desktop Layout -->
+      <div class="hidden lg:block">
+        <!-- Top Section: Specialist Info + Image + Certifications -->
+        <div class="grid lg:grid-cols-3 gap-6 mb-6">
+          <!-- Specialist Details + Image -->
+          <div class="lg:col-span-2">
             <div
-              class="bg-white rounded-lg shadow-sm border w-full max-w-md mx-auto"
+              class="bg-principal rounded-2xl p-6 shadow-sm border border-bordes"
             >
-              <!-- Header Tabs -->
-              <div class="flex border-b">
-                <button
-                  id="date-tab"
-                  class="flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors bg-blue-50 text-blue-600 border-b-2 border-blue-600"
-                >
-                  <i data-lucide="calendar-days" class="h-4 w-4"></i>
-                  Fecha
-                </button>
-                <button
-                  id="time-tab"
-                  class="flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50 opacity-50 cursor-not-allowed"
-                >
-                  <i data-lucide="clock" class="h-4 w-4"></i>
-                  Hora
-                </button>
-              </div>
-
-              <!-- Content -->
-              <div class="p-4">
-                <!-- Date Selection -->
-                <div id="date-content" class="space-y-4">
-                  <div class="text-center">
-                    <h4 class="text-lg font-medium text-gray-900 mb-2">
-                      Selecciona una fecha
-                    </h4>
-                    <p class="text-sm text-gray-600">
-                      Los domingos no hay atención
-                    </p>
-                  </div>
-
-                  <!-- Calendar -->
-                  <div class="flex justify-center">
-                    <div class="w-full max-w-sm">
-                      <div class="flex items-center justify-between mb-4">
-                        <button
-                          id="prev-month"
-                          class="p-2 hover:bg-gray-100 rounded-md"
-                        >
-                          <i data-lucide="chevron-left" class="h-4 w-4"></i>
-                        </button>
-                        <h4
-                          id="current-month"
-                          class="text-lg font-semibold"
-                        ></h4>
-                        <button
-                          id="next-month"
-                          class="p-2 hover:bg-gray-100 rounded-md"
-                        >
-                          <i data-lucide="chevron-right" class="h-4 w-4"></i>
-                        </button>
-                      </div>
-
-                      <!-- Days of week -->
-                      <div class="calendar-grid mb-2">
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Dom
-                        </div>
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Lun
-                        </div>
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Mar
-                        </div>
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Mié
-                        </div>
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Jue
-                        </div>
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Vie
-                        </div>
-                        <div
-                          class="text-center text-sm font-medium text-gray-500 py-2"
-                        >
-                          Sáb
-                        </div>
-                      </div>
-
-                      <!-- Calendar days -->
-                      <div id="calendar-days" class="calendar-grid">
-                        <!-- Days will be generated here -->
-                      </div>
-                    </div>
-                  </div>
-
-                  <div id="date-selected" class="text-center hidden">
-                    <p class="text-sm text-green-600 font-medium mb-3">
-                      Fecha seleccionada: <span id="selected-date-text"></span>
-                    </p>
-                    <button
-                      id="continue-to-time"
-                      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
-                    >
-                      Continuar a selección de hora
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Time Selection -->
-                <div id="time-content" class="space-y-4 hidden">
-                  <div class="text-center">
-                    <h4 class="text-lg font-medium text-gray-900 mb-2">
-                      Selecciona una hora
-                    </h4>
-                    <p
-                      id="selected-date-display"
-                      class="text-sm text-gray-600"
-                    ></p>
-                  </div>
-
-                  <div id="time-slots" class="grid grid-cols-3 gap-2">
-                    <!-- Time slots will be generated here -->
-                  </div>
-
-                  <div
-                    id="time-selected"
-                    class="text-center pt-4 border-t hidden"
-                  >
-                    <p class="text-sm text-green-600 font-medium mb-3">
-                      Hora seleccionada: <span id="selected-time-text"></span>
-                    </p>
-                    <button
-                      id="change-date"
-                      class="border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-md transition-colors mr-2"
-                    >
-                      Cambiar fecha
-                    </button>
-                  </div>
-                </div>
+              <div
+                class="grid md:grid-cols-2 gap-6"
+                id="specialist-details-desktop"
+              >
+                <!-- Content will be generated by JavaScript -->
               </div>
             </div>
           </div>
 
-          <!-- Summary and Validation -->
-          <div>
-            <div class="bg-white rounded-lg shadow-sm border">
-              <div class="p-6">
-                <h4 class="text-lg font-semibold text-gray-900 mb-4">
-                  Resumen de la Cita
-                </h4>
+          <!-- Certifications -->
+          <div
+            class="bg-principal rounded-2xl p-6 shadow-sm border border-bordes"
+            id="certifications-card-desktop"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2L15.09 8.26L22 9L17 14.74L18.18 21.02L12 17.77L5.82 21.02L7 14.74L2 9L8.91 8.26L12 2Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl lg:text-2xl font-bold text-gray-900">
+                Certificaciones
+              </h3>
+            </div>
+            <div class="space-y-4" id="certifications-list-desktop">
+              <!-- Certifications will be generated by JavaScript -->
+            </div>
+          </div>
+        </div>
 
-                <div class="space-y-3 mb-6">
-                  <div class="flex justify-between">
-                    <span class="text-gray-600">Especialista:</span>
-                    <span id="summary-specialist" class="font-medium"
-                      >Dr. María González</span
+        <!-- Bottom Section: Calendar + Summary -->
+        <div class="grid lg:grid-cols-3 gap-6">
+          <!-- Calendar/Time Picker Section (Desktop) -->
+          <div
+            class="lg:col-span-2 bg-principal rounded-2xl p-6 shadow-sm border border-bordes"
+          >
+            <h2
+              class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2"
+              id="appointment-title-desktop"
+            >
+              Agendar Cita con Dr. María González
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm lg:text-base">
+              Selecciona la fecha y hora de tu preferencia
+            </p>
+
+            <div class="flex border-b border-gray-200 mb-6">
+              <button
+                id="tab-date-desktop"
+                class="flex-1 py-3 text-center font-medium text-gray-700 border-b-2 border-blue-500 transition-colors text-sm lg:text-base"
+              >
+                <div class="flex items-center justify-center gap-2">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Fecha
+                </div>
+              </button>
+              <button
+                id="tab-time-desktop"
+                class="flex-1 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent transition-colors text-sm lg:text-base"
+              >
+                <div class="flex items-center justify-center gap-2">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Hora
+                </div>
+              </button>
+            </div>
+
+            <div id="date-view-desktop">
+              <h4 class="text-lg lg:text-xl font-semibold text-gray-900 mb-2">
+                Selecciona una fecha
+              </h4>
+              <p class="text-sm lg:text-base text-gray-500 mb-4">
+                Los domingos no hay atención
+              </p>
+
+              <div class="flex items-center justify-between mb-4">
+                <button
+                  id="prev-month-desktop"
+                  class="p-2 hover:bg-gray-100 rounded-full"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    ></path>
+                  </svg>
+                </button>
+                <span
+                  class="text-lg lg:text-xl font-medium text-gray-900"
+                  id="current-month-year-desktop"
+                ></span>
+                <button
+                  id="next-month-desktop"
+                  class="p-2 hover:bg-gray-100 rounded-full"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="calendar-grid mb-4">
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Do
+                </div>
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Lu
+                </div>
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Ma
+                </div>
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Mi
+                </div>
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Ju
+                </div>
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Vi
+                </div>
+                <div
+                  class="text-center text-sm lg:text-base font-medium text-gray-500 py-2"
+                >
+                  Sá
+                </div>
+              </div>
+              <div class="calendar-grid" id="calendar-grid-desktop">
+                <!-- Calendar days will be generated by JavaScript -->
+              </div>
+            </div>
+
+            <div id="time-view-desktop" style="display: none">
+              <h4 class="text-lg lg:text-xl font-semibold text-gray-900 mb-2">
+                Selecciona una hora
+              </h4>
+              <p
+                class="text-sm lg:text-base text-gray-500 mb-4"
+                id="selected-date-display-desktop"
+              ></p>
+              <div class="grid grid-cols-3 gap-3" id="time-slots-grid-desktop">
+                <!-- Time slots will be generated by JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Appointment Summary (Desktop) -->
+          <div
+            class="bg-principal rounded-2xl p-6 shadow-sm border border-bordes"
+            id="appointment-summary-desktop"
+            style="display: none"
+          >
+            <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
+              Resumen de la Cita
+            </h3>
+
+            <div class="space-y-6">
+              <!-- Specialty -->
+              <div>
+                <div class="text-gray-600 mb-2 text-sm lg:text-base">
+                  Especialidad
+                </div>
+                <div
+                  class="bg-gray-100 rounded-lg px-4 py-2 font-medium text-base lg:text-lg"
+                  id="summary-specialty-desktop"
+                >
+                  Ortodoncia
+                </div>
+              </div>
+
+              <!-- Specialist -->
+              <div>
+                <div class="text-gray-600 mb-2 text-sm lg:text-base">
+                  Especialista
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    ></path>
+                  </svg>
+                  <span
+                    class="font-medium text-base lg:text-lg"
+                    id="summary-doctor-desktop"
+                    >Dr. María González</span
+                  >
+                </div>
+              </div>
+
+              <!-- Date and Time -->
+              <div>
+                <div class="text-gray-600 mb-2 text-sm lg:text-base">
+                  Fecha y Hora
+                </div>
+                <div class="space-y-2">
+                  <div class="flex items-center gap-2">
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <span class="text-base lg:text-lg" id="summary-date-desktop"
+                      >martes, 22 de julio de 2025</span
                     >
                   </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600">Especialidad:</span>
-                    <span id="summary-specialty" class="font-medium"
-                      >Ortodoncia</span
+                  <div class="flex items-center gap-2">
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600">Fecha:</span>
-                    <span id="summary-date" class="font-medium"
-                      >No seleccionada</span
-                    >
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600">Hora:</span>
-                    <span id="summary-time" class="font-medium"
-                      >No seleccionada</span
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                    <span class="text-base lg:text-lg" id="summary-time-desktop"
+                      >16:00</span
                     >
                   </div>
                 </div>
-
-                <button
-                  id="validate-availability"
-                  class="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg rounded-md transition-colors opacity-50 cursor-not-allowed"
-                  disabled
-                >
-                  Validar Disponibilidad
-                </button>
-
-                <p
-                  id="completion-message"
-                  class="text-sm text-gray-500 mt-3 text-center"
-                >
-                  Completa la selección de fecha y hora para continuar
-                </p>
               </div>
+
+              <!-- Validation Button -->
+              <button
+                class="w-full bg-black text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors text-base lg:text-lg"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Validar Disponibilidad
+              </button>
+
+              <p class="text-center text-sm lg:text-base text-gray-500">
+                Verificaremos la disponibilidad del especialista en la fecha
+                seleccionada
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <script>
-      // Mock data for dental specialists
+      // Specialists data
       const specialists = [
         {
           id: 1,
           name: "Dr. María González",
           specialty: "Ortodoncia",
+          image: "/placeholder.svg?height=400&width=400",
           description:
-            "Especialista en ortodoncia con más de 15 años de experiencia en el diagnóstico y tratamiento de maloclusiones dentales. Graduada de la Universidad Nacional con especialización en ortodoncia invisible y brackets estéticos. Experta en tratamientos con Invisalign y sistemas de ortodoncia lingual.",
-          images: [
-            "/placeholder.svg?height=400&width=600&text=Dr.+María+González+1",
-            "/placeholder.svg?height=400&width=600&text=Dr.+María+González+2",
-            "/placeholder.svg?height=400&width=600&text=Dr.+María+González+3",
-          ],
+            "Especialista en ortodoncia con más de 15 años de experiencia en el diagnóstico y tratamiento de maloclusiones dentales. Graduada de la Universidad Nacional con especialización en ortodoncia invisible y brackets estéticos. Experta en tratamientos con Invisalign y sistemas de ortodoncia moderna.",
           certifications: [
             "Especialización en Ortodoncia - Universidad Nacional",
             "Certificación Invisalign Diamond Provider",
@@ -373,86 +763,43 @@
         {
           id: 2,
           name: "Dr. Carlos Rodríguez",
-          specialty: "Cirugía Oral",
+          specialty: "Ortodoncia",
+          image: "/placeholder.svg?height=400&width=400",
           description:
-            "Cirujano oral y maxilofacial especializado en implantes dentales, extracciones complejas y cirugía reconstructiva. Con experiencia internacional en técnicas avanzadas de regeneración ósea y cirugía guiada por computadora.",
-          images: [
-            "/placeholder.svg?height=400&width=600&text=Dr.+Carlos+Rodríguez+1",
-            "/placeholder.svg?height=400&width=600&text=Dr.+Carlos+Rodríguez+2",
-            "/placeholder.svg?height=400&width=600&text=Dr.+Carlos+Rodríguez+3",
-          ],
+            "Ortodoncista certificado con 12 años de experiencia en corrección dental. Especializado en ortodoncia interceptiva y correctiva para niños y adultos. Graduado de la Universidad Central con múltiples certificaciones internacionales en técnicas de ortodoncia avanzada.",
           certifications: [
-            "Especialización en Cirugía Oral y Maxilofacial",
-            "Certificación en Implantología Avanzada",
-            "Diplomado en Regeneración Ósea Guiada",
-            "Certificación en Cirugía Guiada por Computadora",
-            "Miembro del Colegio de Cirujanos Orales",
+            "Especialización en Ortodoncia - Universidad Central",
+            "Certificación en Brackets Autoligables",
+            "Diplomado en Ortodoncia Pediátrica",
+            "Certificación Damon System",
+            "Miembro del Colegio de Ortodoncistas",
           ],
         },
         {
           id: 3,
           name: "Dra. Ana Martínez",
-          specialty: "Endodoncia",
+          specialty: "Ortodoncia",
+          image: "/placeholder.svg?height=400&width=400",
           description:
-            "Endodoncista especializada en tratamientos de conducto y microcirugía endodóntica. Pionera en el uso de microscopio dental y técnicas de endodoncia regenerativa para preservar la vitalidad pulpar.",
-          images: [
-            "/placeholder.svg?height=400&width=600&text=Dra.+Ana+Martínez+1",
-            "/placeholder.svg?height=400&width=600&text=Dra.+Ana+Martínez+2",
-            "/placeholder.svg?height=400&width=600&text=Dra.+Ana+Martínez+3",
-          ],
+            "Ortodoncista con enfoque en tratamientos estéticos y funcionales. 10 años de experiencia en ortodoncia lingual y sistemas de brackets transparentes. Especialista en casos complejos de maloclusión y rehabilitación oral integral.",
           certifications: [
-            "Especialización en Endodoncia",
-            "Certificación en Microcirugía Endodóntica",
-            "Diplomado en Endodoncia Regenerativa",
-            "Certificación en Microscopía Dental",
-            "Miembro de la Asociación de Endodoncistas",
-          ],
-        },
-        {
-          id: 4,
-          name: "Dr. Luis Fernández",
-          specialty: "Periodoncia",
-          description:
-            "Periodoncista especializado en el tratamiento de enfermedades de las encías y tejidos de soporte dental. Experto en cirugía plástica periodontal y técnicas de regeneración tisular guiada.",
-          images: [
-            "/placeholder.svg?height=400&width=600&text=Dr.+Luis+Fernández+1",
-            "/placeholder.svg?height=400&width=600&text=Dr.+Luis+Fernández+2",
-            "/placeholder.svg?height=400&width=600&text=Dr.+Luis+Fernández+3",
-          ],
-          certifications: [
-            "Especialización en Periodoncia",
-            "Certificación en Cirugía Plástica Periodontal",
-            "Diplomado en Regeneración Tisular Guiada",
-            "Certificación en Láser Terapia Periodontal",
-            "Miembro de la Sociedad de Periodoncia",
+            "Especialización en Ortodoncia - Universidad Javeriana",
+            "Certificación en Ortodoncia Lingual",
+            "Diplomado en Brackets Estéticos",
+            "Certificación Clear Aligner",
+            "Especialista en Casos Complejos",
           ],
         },
       ];
 
-      // State variables
-      let selectedSpecialist = specialists[0];
-      let currentImageIndex = 0;
+      let currentSpecialist = 0;
       let selectedDate = null;
-      let selectedTime = "";
+      let selectedTime = null;
       let currentMonth = new Date().getMonth();
       let currentYear = new Date().getFullYear();
-      let activeTab = "date";
+      let activeTab = "date"; // 'date' or 'time'
 
-      // Constants
-      const timeSlots = [
-        "08:00",
-        "09:00",
-        "10:00",
-        "11:00",
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00",
-        "17:00",
-        "18:00",
-      ];
-      const monthNames = [
+      const months = [
         "Enero",
         "Febrero",
         "Marzo",
@@ -467,425 +814,379 @@
         "Diciembre",
       ];
 
-      // Utility functions
-      function getElementById(id) {
-        return document.getElementById(id);
+      const timeSlots = [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+      ];
+
+      // Helper to get elements by suffix
+      function getElement(id, suffix) {
+        return document.getElementById(`${id}${suffix}`);
       }
 
-      function addClass(element, className) {
-        element.classList.add(className);
+      // Generate specialist navigation buttons
+      function generateSpecialistNav() {
+        const navContainer = getElement("specialists-nav", "");
+        navContainer.innerHTML = "";
+
+        specialists.forEach((specialist, index) => {
+          const button = document.createElement("button");
+          button.className = `btn cursor-pointer hover:shadow-md whitespace-nowrap ${
+            index === currentSpecialist
+              ? "primario"
+              : "secundario border border-bordes"
+          }`;
+          button.textContent = specialist.name;
+          button.onclick = () => selectSpecialist(index);
+          navContainer.appendChild(button);
+        });
       }
 
-      function removeClass(element, className) {
-        element.classList.remove(className);
+      // Generate specialist details for mobile
+      function generateSpecialistDetailsMobile() {
+        const detailsContainer = getElement("specialist-details", "-mobile");
+        const specialist = specialists[currentSpecialist];
+
+        detailsContainer.innerHTML = `
+                <div class="mb-6">
+                    <div class="aspect-square bg-gradient-to-br from-teal-400 to-teal-600 relative overflow-hidden rounded-3xl">
+                        <img src="${specialist.image}" alt="${specialist.name}" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="px-4">
+                    <h2 class="mb-2">${specialist.name}</h2>
+                    <div class="encabezado bg-gray-100 text-gray-800 mb-4 inline-block">${specialist.specialty}</div>
+                    <p>${specialist.description}</p>
+                </div>
+            `;
+        getElement(
+          "appointment-title",
+          "-mobile"
+        ).textContent = `Agendar Cita con ${specialist.name}`;
       }
 
-      function toggleClass(element, className) {
-        element.classList.toggle(className);
+      // Generate specialist details for desktop
+      function generateSpecialistDetailsDesktop() {
+        const detailsContainer = getElement("specialist-details", "-desktop");
+        const specialist = specialists[currentSpecialist];
+
+        detailsContainer.innerHTML = `
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">${specialist.name}</h2>
+                    <div class="text-xl text-gray-600 mb-4">${specialist.specialty}</div>
+                    <p class="text-gray-700 leading-relaxed">${specialist.description}</p>
+                </div>
+                <div>
+                    <div class="aspect-square bg-gradient-to-br from-teal-400 to-teal-600 relative overflow-hidden rounded-3xl">
+                        <img src="${specialist.image}" alt="${specialist.name}" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            `;
+        getElement(
+          "appointment-title",
+          "-desktop"
+        ).textContent = `Agendar Cita con ${specialist.name}`;
       }
 
-      // Initialize the page
-      function init() {
-        const lucide = window.lucide; // Declare the lucide variable here
-        if (lucide) {
-          lucide.createIcons();
-        }
-        renderSpecialistsNav();
-        updateSpecialistInfo();
-        renderCalendar();
-        renderTimeSlots();
-        setupEventListeners();
-      }
+      // Generate certifications
+      function generateCertifications(suffix = "") {
+        const certificationsContainer = getElement(
+          "certifications-list",
+          suffix
+        );
+        const specialist = specialists[currentSpecialist];
 
-      // Render specialists navigation
-      function renderSpecialistsNav() {
-        const nav = getElementById("specialists-nav");
-        nav.innerHTML = specialists
-          .map((specialist) => {
-            const isSelected = specialist.id === selectedSpecialist.id;
-            const buttonClass = isSelected
-              ? "bg-blue-600 hover:bg-blue-700 text-white"
-              : "border border-gray-300 hover:bg-gray-50 text-gray-700";
+        certificationsContainer.innerHTML = "";
 
-            return `
-            <button class="specialist-btn whitespace-nowrap px-4 py-2 rounded-md transition-colors ${buttonClass}" data-id="${specialist.id}">
-                ${specialist.name}
-            </button>
-        `;
-          })
-          .join("");
-      }
-
-      // Update specialist information
-      function updateSpecialistInfo() {
-        getElementById("specialty-title").textContent =
-          selectedSpecialist.specialty;
-        getElementById("specialist-name").textContent = selectedSpecialist.name;
-        getElementById("specialist-badge").textContent =
-          selectedSpecialist.specialty;
-        getElementById("specialist-description").textContent =
-          selectedSpecialist.description;
-        getElementById(
-          "appointment-title"
-        ).textContent = `Agendar Cita con ${selectedSpecialist.name}`;
-        getElementById("summary-specialist").textContent =
-          selectedSpecialist.name;
-        getElementById("summary-specialty").textContent =
-          selectedSpecialist.specialty;
-
-        // Update main image
-        getElementById("main-image").src =
-          selectedSpecialist.images[currentImageIndex];
-
-        // Update image indicators
-        const indicators = getElementById("image-indicators");
-        indicators.innerHTML = selectedSpecialist.images
-          .map((_, index) => {
-            const indicatorClass =
-              index === currentImageIndex ? "bg-white" : "bg-white/50";
-            return `<button class="w-2 h-2 rounded-full indicator-btn ${indicatorClass}" data-index="${index}"></button>`;
-          })
-          .join("");
-
-        // Update certifications
-        const certificationsList = getElementById("certifications-list");
-        certificationsList.innerHTML = selectedSpecialist.certifications
-          .map(
-            (cert) => `
-        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors fade-in">
-            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-            <p class="text-gray-700 leading-relaxed">${cert}</p>
-        </div>
-    `
-          )
-          .join("");
+        specialist.certifications.forEach((certification) => {
+          const certDiv = document.createElement("div");
+          certDiv.className = "flex items-start gap-3";
+          certDiv.innerHTML = `
+                    <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p>${certification}</p>
+                `;
+          certificationsContainer.appendChild(certDiv);
+        });
       }
 
       // Render calendar
-      function renderCalendar() {
-        const currentMonthElement = getElementById("current-month");
-        currentMonthElement.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+      function renderCalendar(suffix = "") {
+        const calendarGrid = getElement("calendar-grid", suffix);
+        const currentMonthYearSpan = getElement("current-month-year", suffix);
+        calendarGrid.innerHTML = "";
 
-        const calendarDays = getElementById("calendar-days");
-        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
         const daysInMonth = new Date(
           currentYear,
           currentMonth + 1,
           0
         ).getDate();
+        const firstDayOfWeek = firstDayOfMonth.getDay(); // 0 for Sunday, 1 for Monday...
         const today = new Date();
 
-        let daysHTML = "";
+        currentMonthYearSpan.textContent = `${months[currentMonth]} ${currentYear}`;
 
-        // Empty cells for days before the first day of the month
-        for (let i = 0; i < firstDay; i++) {
-          daysHTML += '<div class="calendar-day other-month"></div>';
+        // Add empty cells for days before the first day of the month
+        for (let i = 0; i < firstDayOfWeek; i++) {
+          const emptyCell = document.createElement("div");
+          emptyCell.className = "calendar-day disabled"; // Visually disabled
+          calendarGrid.appendChild(emptyCell);
         }
 
-        // Days of the current month
+        // Add days of the month
         for (let day = 1; day <= daysInMonth; day++) {
           const date = new Date(currentYear, currentMonth, day);
-          const isToday = date.toDateString() === today.toDateString();
-          const isPast = date < today && !isToday;
-          const isSunday = date.getDay() === 0;
+          const isToday =
+            date.getDate() === today.getDate() &&
+            date.getMonth() === today.getMonth() &&
+            date.getFullYear() === today.getFullYear();
           const isSelected =
-            selectedDate && date.toDateString() === selectedDate.toDateString();
+            selectedDate &&
+            date.getDate() === selectedDate.getDate() &&
+            date.getMonth() === selectedDate.getMonth() &&
+            date.getFullYear() === selectedDate.getFullYear();
+          const isSunday = date.getDay() === 0; // Sunday
 
-          let classes = "calendar-day text-sm";
-          if (isPast || isSunday) {
-            classes += " disabled";
-          } else if (isSelected) {
-            classes += " selected";
-          } else if (isToday) {
-            classes += " bg-blue-100 text-blue-600 font-semibold";
+          const dayDiv = document.createElement("div");
+          dayDiv.textContent = day;
+          dayDiv.className = `calendar-day ${
+            isSunday ? "disabled" : "selectable"
+          } ${
+            isSelected ? "selected" : ""
+          } text-sm md:text-base lg:text-lg font-body`;
+
+          if (!isSunday) {
+            dayDiv.onclick = () => selectDate(date, suffix);
           }
-
-          daysHTML += `<div class="${classes}" data-date="${currentYear}-${currentMonth}-${day}">${day}</div>`;
+          calendarGrid.appendChild(dayDiv);
         }
-
-        calendarDays.innerHTML = daysHTML;
       }
 
       // Render time slots
-      function renderTimeSlots() {
-        const timeSlotsContainer = getElementById("time-slots");
-        timeSlotsContainer.innerHTML = timeSlots
-          .map((time) => {
-            const isSelected = selectedTime === time;
-            const buttonClass = isSelected
-              ? "bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
-              : "border-gray-300 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 text-gray-700";
+      function renderTimeSlots(suffix = "") {
+        const timeSlotsGrid = getElement("time-slots-grid", suffix);
+        const selectedDateDisplay = getElement("selected-date-display", suffix);
+        timeSlotsGrid.innerHTML = "";
 
-            return `
-            <button class="time-slot h-12 text-sm px-4 py-2 rounded-md border transition-colors ${buttonClass}" data-time="${time}">
-                ${time}
-            </button>
-        `;
-          })
-          .join("");
-      }
+        if (selectedDate) {
+          const dateOptions = {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+          };
+          selectedDateDisplay.textContent = selectedDate.toLocaleDateString(
+            "es-ES",
+            dateOptions
+          );
 
-      // Event handlers
-      function handleSpecialistClick(e) {
-        if (e.target.classList.contains("specialist-btn")) {
-          const specialistId = Number.parseInt(e.target.dataset.id);
-          selectedSpecialist = specialists.find((s) => s.id === specialistId);
-          currentImageIndex = 0;
-          selectedDate = null;
-          selectedTime = "";
-          renderSpecialistsNav();
-          updateSpecialistInfo();
-          resetDateTimePicker();
-          updateSummary();
-        }
-      }
-
-      function handleImageNavigation(direction) {
-        if (direction === "prev") {
-          currentImageIndex =
-            currentImageIndex === 0
-              ? selectedSpecialist.images.length - 1
-              : currentImageIndex - 1;
+          timeSlots.forEach((time) => {
+            const timeButton = document.createElement("button");
+            timeButton.className = `time-slot-button ${
+              selectedTime === time ? "selected" : ""
+            } text-sm md:text-base lg:text-lg font-body`;
+            timeButton.textContent = time;
+            timeButton.onclick = () => selectTime(time, suffix);
+            timeSlotsGrid.appendChild(timeButton);
+          });
         } else {
-          currentImageIndex =
-            currentImageIndex === selectedSpecialist.images.length - 1
-              ? 0
-              : currentImageIndex + 1;
-        }
-        updateSpecialistInfo();
-      }
-
-      function handleIndicatorClick(e) {
-        if (e.target.classList.contains("indicator-btn")) {
-          currentImageIndex = Number.parseInt(e.target.dataset.index);
-          updateSpecialistInfo();
+          selectedDateDisplay.textContent =
+            "Por favor, selecciona una fecha primero.";
         }
       }
 
-      function handleCalendarNavigation(direction) {
-        if (direction === "prev") {
+      // Select date
+      function selectDate(date, suffix) {
+        selectedDate = date;
+        selectedTime = null; // Reset time when date changes
+        renderCalendar("-mobile");
+        renderCalendar("-desktop");
+        renderTimeSlots("-mobile");
+        renderTimeSlots("-desktop");
+        switchTab("time", suffix); // Switch to time tab after date selection
+        checkAppointmentComplete();
+      }
+
+      // Select time
+      function selectTime(time, suffix) {
+        selectedTime = time;
+        renderTimeSlots("-mobile");
+        renderTimeSlots("-desktop");
+        checkAppointmentComplete();
+      }
+
+      // Switch tabs
+      function switchTab(tab, suffix) {
+        activeTab = tab;
+        const dateTab = getElement("tab-date", suffix);
+        const timeTab = getElement("tab-time", suffix);
+        const dateView = getElement("date-view", suffix);
+        const timeView = getElement("time-view", suffix);
+
+        if (tab === "date") {
+          dateTab.classList.add("border-blue-500", "text-gray-700");
+          dateTab.classList.remove("border-transparent", "text-gray-500");
+          timeTab.classList.remove("border-blue-500", "text-gray-700");
+          timeTab.classList.add("border-transparent", "text-gray-500");
+          dateView.style.display = "block";
+          timeView.style.display = "none";
+        } else {
+          timeTab.classList.add("border-blue-500", "text-gray-700");
+          timeTab.classList.remove("border-transparent", "text-gray-500");
+          dateTab.classList.remove("border-blue-500", "text-gray-700");
+          dateTab.classList.add("border-transparent", "text-gray-500");
+          dateView.style.display = "none";
+          timeView.style.display = "block";
+        }
+      }
+
+      // Check if appointment is complete
+      function checkAppointmentComplete() {
+        if (selectedDate && selectedTime) {
+          getElement("appointment-summary", "-mobile").style.display = "block";
+          getElement("appointment-summary", "-desktop").style.display = "block";
+          updateSummary();
+        } else {
+          getElement("appointment-summary", "-mobile").style.display = "none";
+          getElement("appointment-summary", "-desktop").style.display = "none";
+        }
+      }
+
+      // Update summary
+      function updateSummary() {
+        const specialist = specialists[currentSpecialist];
+
+        // Update specialty category in header
+        getElement("specialty-category", "").textContent = specialist.specialty;
+
+        // Update mobile summary
+        getElement("summary-specialty", "-mobile").textContent =
+          specialist.specialty;
+        getElement("summary-doctor", "-mobile").textContent = specialist.name;
+
+        // Update desktop summary
+        getElement("summary-specialty", "-desktop").textContent =
+          specialist.specialty;
+        getElement("summary-doctor", "-desktop").textContent = specialist.name;
+
+        if (selectedDate && selectedTime) {
+          const dateOptions = {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          };
+          const formattedDate = selectedDate.toLocaleDateString(
+            "es-ES",
+            dateOptions
+          );
+          getElement("summary-date", "-mobile").textContent = formattedDate;
+          getElement("summary-time", "-mobile").textContent = selectedTime;
+          getElement("summary-date", "-desktop").textContent = formattedDate;
+          getElement("summary-time", "-desktop").textContent = selectedTime;
+        }
+      }
+
+      // Select specialist
+      function selectSpecialist(index) {
+        currentSpecialist = index;
+        selectedDate = null; // Reset selections when specialist changes
+        selectedTime = null;
+        generateSpecialistNav();
+        generateSpecialistDetailsMobile();
+        generateSpecialistDetailsDesktop();
+        generateCertifications("-mobile");
+        generateCertifications("-desktop");
+        renderCalendar("-mobile");
+        renderCalendar("-desktop");
+        renderTimeSlots("-mobile");
+        renderTimeSlots("-desktop");
+        switchTab("date", "-mobile"); // Always start on date tab
+        switchTab("date", "-desktop");
+        checkAppointmentComplete();
+      }
+
+      // Initialize page
+      function init() {
+        generateSpecialistNav();
+        generateSpecialistDetailsMobile();
+        generateSpecialistDetailsDesktop();
+        generateCertifications("-mobile");
+        generateCertifications("-desktop");
+        renderCalendar("-mobile");
+        renderCalendar("-desktop");
+        renderTimeSlots("-mobile");
+        renderTimeSlots("-desktop");
+        switchTab("date", "-mobile");
+        switchTab("date", "-desktop");
+        checkAppointmentComplete(); // Hide summary initially
+
+        // Add event listeners for month navigation
+        getElement("prev-month", "-mobile").addEventListener("click", () => {
           if (currentMonth === 0) {
             currentMonth = 11;
             currentYear--;
           } else {
             currentMonth--;
           }
-        } else {
+          renderCalendar("-mobile");
+          renderCalendar("-desktop");
+        });
+        getElement("next-month", "-mobile").addEventListener("click", () => {
           if (currentMonth === 11) {
             currentMonth = 0;
             currentYear++;
           } else {
             currentMonth++;
           }
-        }
-        renderCalendar();
-      }
-
-      function handleDateSelection(e) {
-        if (
-          e.target.classList.contains("calendar-day") &&
-          !e.target.classList.contains("disabled") &&
-          !e.target.classList.contains("other-month")
-        ) {
-          const dateData = e.target.dataset.date;
-          if (dateData) {
-            const [year, month, day] = dateData.split("-").map(Number);
-            selectedDate = new Date(year, month, day);
-            renderCalendar();
-            showDateSelected();
-            updateSummary();
-          }
-        }
-      }
-
-      function handleTimeSelection(e) {
-        if (e.target.classList.contains("time-slot")) {
-          selectedTime = e.target.dataset.time;
-          renderTimeSlots();
-          showTimeSelected();
-          updateSummary();
-        }
-      }
-
-      function handleValidateAvailability() {
-        if (selectedDate && selectedTime) {
-          alert(
-            `Validando disponibilidad para ${
-              selectedSpecialist.name
-            } el ${selectedDate.toLocaleDateString(
-              "es-ES"
-            )} a las ${selectedTime}`
-          );
-        }
-      }
-
-      // Setup event listeners
-      function setupEventListeners() {
-        // Specialist navigation
-        document.addEventListener("click", handleSpecialistClick);
-
-        // Image navigation
-        getElementById("prev-image").addEventListener("click", () =>
-          handleImageNavigation("prev")
-        );
-        getElementById("next-image").addEventListener("click", () =>
-          handleImageNavigation("next")
-        );
-
-        // Image indicators
-        document.addEventListener("click", handleIndicatorClick);
-
-        // Calendar navigation
-        getElementById("prev-month").addEventListener("click", () =>
-          handleCalendarNavigation("prev")
-        );
-        getElementById("next-month").addEventListener("click", () =>
-          handleCalendarNavigation("next")
-        );
-
-        // Date selection
-        document.addEventListener("click", handleDateSelection);
-
-        // Tab navigation
-        getElementById("date-tab").addEventListener("click", () =>
-          switchTab("date")
-        );
-        getElementById("time-tab").addEventListener("click", () => {
-          if (selectedDate) switchTab("time");
+          renderCalendar("-mobile");
+          renderCalendar("-desktop");
         });
-        getElementById("continue-to-time").addEventListener("click", () =>
-          switchTab("time")
+        getElement("prev-month", "-desktop").addEventListener("click", () => {
+          if (currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+          } else {
+            currentMonth--;
+          }
+          renderCalendar("-mobile");
+          renderCalendar("-desktop");
+        });
+        getElement("next-month", "-desktop").addEventListener("click", () => {
+          if (currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+          } else {
+            currentMonth++;
+          }
+          renderCalendar("-mobile");
+          renderCalendar("-desktop");
+        });
+
+        // Add event listeners for tabs
+        getElement("tab-date", "-mobile").addEventListener("click", () =>
+          switchTab("date", "-mobile")
         );
-        getElementById("change-date").addEventListener("click", () =>
-          switchTab("date")
+        getElement("tab-time", "-mobile").addEventListener("click", () =>
+          switchTab("time", "-mobile")
         );
-
-        // Time selection
-        document.addEventListener("click", handleTimeSelection);
-
-        // Validate availability
-        getElementById("validate-availability").addEventListener(
-          "click",
-          handleValidateAvailability
+        getElement("tab-date", "-desktop").addEventListener("click", () =>
+          switchTab("date", "-desktop")
+        );
+        getElement("tab-time", "-desktop").addEventListener("click", () =>
+          switchTab("time", "-desktop")
         );
       }
 
-      // Switch between date and time tabs
-      function switchTab(tab) {
-        activeTab = tab;
-        const dateTab = getElementById("date-tab");
-        const timeTab = getElementById("time-tab");
-        const dateContent = getElementById("date-content");
-        const timeContent = getElementById("time-content");
-
-        if (tab === "date") {
-          dateTab.className =
-            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors bg-blue-50 text-blue-600 border-b-2 border-blue-600";
-          timeTab.className =
-            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50" +
-            (selectedDate ? "" : " opacity-50 cursor-not-allowed");
-          removeClass(dateContent, "hidden");
-          addClass(timeContent, "hidden");
-        } else {
-          dateTab.className =
-            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50";
-          timeTab.className =
-            "flex-1 flex items-center justify-center gap-2 py-3 px-4 text-sm font-medium transition-colors bg-blue-50 text-blue-600 border-b-2 border-blue-600";
-          addClass(dateContent, "hidden");
-          removeClass(timeContent, "hidden");
-          updateTimeContent();
-        }
-      }
-
-      // Show date selected message
-      function showDateSelected() {
-        const dateSelected = getElementById("date-selected");
-        const selectedDateText = getElementById("selected-date-text");
-
-        if (selectedDate) {
-          selectedDateText.textContent = selectedDate.toLocaleDateString(
-            "es-ES",
-            {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            }
-          );
-          removeClass(dateSelected, "hidden");
-
-          // Enable time tab
-          const timeTab = getElementById("time-tab");
-          removeClass(timeTab, "opacity-50");
-          removeClass(timeTab, "cursor-not-allowed");
-        } else {
-          addClass(dateSelected, "hidden");
-        }
-      }
-
-      // Update time content
-      function updateTimeContent() {
-        const selectedDateDisplay = getElementById("selected-date-display");
-        if (selectedDate) {
-          selectedDateDisplay.textContent = selectedDate.toLocaleDateString(
-            "es-ES",
-            {
-              weekday: "long",
-              day: "numeric",
-              month: "long",
-            }
-          );
-        }
-      }
-
-      // Show time selected message
-      function showTimeSelected() {
-        const timeSelected = getElementById("time-selected");
-        const selectedTimeText = getElementById("selected-time-text");
-
-        if (selectedTime) {
-          selectedTimeText.textContent = selectedTime;
-          removeClass(timeSelected, "hidden");
-        } else {
-          addClass(timeSelected, "hidden");
-        }
-      }
-
-      // Update summary
-      function updateSummary() {
-        const summaryDate = getElementById("summary-date");
-        const summaryTime = getElementById("summary-time");
-        const validateBtn = getElementById("validate-availability");
-        const completionMessage = getElementById("completion-message");
-
-        summaryDate.textContent = selectedDate
-          ? selectedDate.toLocaleDateString("es-ES")
-          : "No seleccionada";
-        summaryTime.textContent = selectedTime || "No seleccionada";
-
-        if (selectedDate && selectedTime) {
-          validateBtn.disabled = false;
-          removeClass(validateBtn, "opacity-50");
-          removeClass(validateBtn, "cursor-not-allowed");
-          addClass(completionMessage, "hidden");
-        } else {
-          validateBtn.disabled = true;
-          addClass(validateBtn, "opacity-50");
-          addClass(validateBtn, "cursor-not-allowed");
-          removeClass(completionMessage, "hidden");
-        }
-      }
-
-      // Reset date time picker
-      function resetDateTimePicker() {
-        switchTab("date");
-        addClass(getElementById("date-selected"), "hidden");
-        addClass(getElementById("time-selected"), "hidden");
-        renderCalendar();
-        renderTimeSlots();
-      }
-
-      // Initialize the page when DOM is loaded
+      // Run initialization when page loads
       document.addEventListener("DOMContentLoaded", init);
     </script>
   </body>
