@@ -135,7 +135,7 @@
   }
 
   .time-slot-button {
-    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg text-titulos hover:bg-fondo-principal flex-1 text-center border border-bordes;
+    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg text-titulos hover:bg-fondo-principal flex-1 text-center border border-bordes cursor-pointer;
   }
 
   .time-slot-button.selected {
