@@ -16,13 +16,13 @@
     <!-- CSS Perzonalizado -->
     <link rel="stylesheet" href="src/css/output.css" />
   </head>
-  <body class="font-body text-base md:text-lg text-textos">
+  <body class="font-body text-textos">
     <!--==================== HEADER ====================-->
-    <header class="relative z-50 bg-fondo-alternativo">
+    <header class="relative z-50 bg-fondo-secundario">
       <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="flex justify-between items-center h-16 md:h-20">
           <!-- Logo -->
-          <h2 class="flex items-center">
+          <div class="flex items-center">
             <div class="flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-scan-heart-icon lucide-scan-heart text-botones-destacados w-8 lg:w-12 h-8 lg:h-12"
+                class="lucide lucide-scan-heart-icon lucide-scan-heart text-primario w-8 lg:w-12 h-8 lg:h-12"
               >
                 <path
                   d="M11.246 16.657a1 1 0 0 0 1.508 0l3.57-4.101A2.75 2.75 0 1 0 12 9.168a2.75 2.75 0 1 0-4.324 3.388z"
@@ -45,24 +45,38 @@
                 <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
               </svg>
             </div>
-            <div class="ml-1">Odonto365</div>
-          </h2>
+            <h2 class="ml-1">Odonto365</h2>
+          </div>
 
           <!-- Menú para pantallas grandes -->
-          <nav
-            class="hidden lg:flex space-x-4 font-semibold font-body text-base lg:text-lg"
-          >
-            <a href="#" class="text-textos btn secundario">Instalaciones</a>
-            <a href="#" class="text-textos btn secundario">Especialidades</a>
-            <a href="#" class="text-textos btn secundario">Blog</a>
-            <a href="#" class="text-textos btn secundario">Contacto</a>
+          <nav class="hidden lg:flex space-x-4">
+            <a
+              href="#"
+              class="btn suave bg-transparent hover:bg-boton-suave-hover-bg"
+              >Instalaciones</a
+            >
+            <a
+              href="#"
+              class="btn suave bg-transparent hover:bg-boton-suave-hover-bg"
+              >Especialidades</a
+            >
+            <a
+              href="#"
+              class="btn suave bg-transparent hover:bg-boton-suave-hover-bg"
+              >Blog</a
+            >
+            <a
+              href="#"
+              class="btn suave bg-transparent hover:bg-boton-suave-hover-bg"
+              >Contacto</a
+            >
           </nav>
 
           <!-- Botones de inicio de sesión y registro para pantallas grandes -->
           <div class="hidden lg:flex space-x-2 text-base lg:text-lg">
             <a
               href="perfil.html"
-              class="px-4 md:px-6 lg:px-8 w-full flex justify-center items-center focus:outline-none gap-2 btn primario"
+              class="flex justify-center items-center focus:outline-none gap-2 btn suave"
             >
               Acceder
               <svg
@@ -87,7 +101,7 @@
           <!-- Botón de menú para pantallas pequeñas -->
           <button
             id="menuToggle"
-            class="lg:hidden text-textos hover:text-titulos focus:outline-none"
+            class="lg:hidden text-titulos focus:outline-none"
             aria-label="Abrir menú"
           >
             <svg
@@ -111,16 +125,32 @@
         class="fixed top-16 left-0 right-0 z-40 px-4 sm:px-6 lg:px-8 hidden"
       >
         <div class="p-5 bg-fondo-principal shadow-sm rounded-lg">
-          <nav class="space-y-4 mt-2 font-semibold font-heading text-base">
-            <a href="#" class="block text-textos">Instalaciones</a>
-            <a href="#" class="block text-textos">Especialidades</a>
-            <a href="#" class="block text-textos">Blog</a>
-            <a href="#" class="block text-textos">Contacto</a>
+          <nav class="space-y-4 mt-2">
+            <a
+              href="#"
+              class="block btn suave bg-transparent hover:bg-boton-suave-hover-bg px-0"
+              >Instalaciones</a
+            >
+            <a
+              href="#"
+              class="block btn suave bg-transparent hover:bg-boton-suave-hover-bg px-0"
+              >Especialidades</a
+            >
+            <a
+              href="#"
+              class="block btn suave bg-transparent hover:bg-boton-suave-hover-bg px-0"
+              >Blog</a
+            >
+            <a
+              href="#"
+              class="block btn suave bg-transparent hover:bg-boton-suave-hover-bg px-0"
+              >Contacto</a
+            >
           </nav>
           <div class="mt-6 flex w-full gap-2 font-heading">
             <a
               href="perfil.html"
-              class="px-4 md:px-6 lg:px-8 w-full flex justify-center items-center focus:outline-none gap-2 btn primario movil"
+              class="flex justify-center items-center focus:outline-none gap-2 btn primario movil"
             >
               Acceder
               <svg
@@ -146,18 +176,18 @@
     </div>
 
     <!--==================== HERO ====================-->
-    <section class="bg-fondo-alternativo pt-16">
+    <section class="bg- bg-fondo-secundario pt-16">
       <div
         class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative grid gap-16 lg:gap-0 lg:grid-cols-2 lg:items-center"
       >
         <div
           class="flex flex-col items-center text-center lg:items-start lg:text-left px-4"
         >
-          <p
-            class="encabezado inline-block bg-botones-destacados/10 text-primario mb-4"
+          <small
+            class="encabezado inline-block mb-4 text-estatus-proxima-texto bg-estatus-proxima-bg font-medium"
           >
             Cuidado Dental Avanzado
-          </p>
+          </small>
           <h1 class="mb-6 leading-none tracking-tight md:max-w-[600px]">
             Bienvenido a la excelencia dental en
             <span class="text-primario">Odonto365</span>
@@ -171,7 +201,7 @@
           >
             <a
               href="#"
-              class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 w-full flex justify-center items-center focus:outline-none gap-2 btn secundario border border-bordes"
+              class="w-full btn suave flex justify-center items-center focus:outline-none gap-2 btn suave border border-borde md:border-none"
             >
               Conócenos
               <svg
@@ -195,7 +225,7 @@
             </a>
             <a
               href="#"
-              class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 w-full flex justify-center items-center focus:outline-none btn primario"
+              class="w-full btn primario flex justify-center items-center focus:outline-none btn primario"
             >
               Contáctanos
             </a>
@@ -217,17 +247,17 @@
                 <img
                   src="src/img/user1.jpeg"
                   alt="User 1"
-                  class="h-8 w-8 rounded-full border-2 border-fondo-principal"
+                  class="h-8 w-8 rounded-full border-2 border-borde"
                 />
                 <img
                   src="src/img/user2.jpeg"
                   alt="User 2"
-                  class="h-8 w-8 rounded-full border-2 border-fondo-principal"
+                  class="h-8 w-8 rounded-full border-2 border-borde"
                 />
                 <img
                   src="src/img/user3.jpeg"
                   alt="User 3"
-                  class="h-8 w-8 rounded-full border-2 border-fondo-principal"
+                  class="h-8 w-8 rounded-full border-2 border-borde"
                 />
               </div>
               <div class="flex flex-col">
@@ -266,11 +296,11 @@
           class="flex flex-col items-center justify-center space-y-4 text-center mb-12"
         >
           <div class="space-y-2">
-            <p
-              class="encabezado inline-block bg-botones-destacados/10 text-primario mb-4"
+            <small
+              class="encabezado text-estatus-proxima-texto bg-estatus-proxima-bg inline-block mb-4"
             >
               Nuestras Instalaciones
-            </p>
+            </small>
             <h2 class="tracking-tighter">Consultorio Médico Moderno</h2>
             <p class="max-w-[700px]">
               Contamos con instalaciones de última generación diseñadas para
@@ -397,7 +427,7 @@
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="lucide lucide-map-pin-icon lucide-map-pin w-4 h-4 text-botones-destacados"
+                  class="lucide lucide-map-pin-icon lucide-map-pin w-4 h-4 text-primario"
                 >
                   <path
                     d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
@@ -419,7 +449,7 @@
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="lucide lucide-clock8-icon lucide-clock-8 w-4 h-4 text-botones-destacados"
+                  class="lucide lucide-clock8-icon lucide-clock-8 w-4 h-4 text-primario"
                 >
                   <path d="M12 6v6l-4 2" />
                   <circle cx="12" cy="12" r="10" />
@@ -439,7 +469,7 @@
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="lucide lucide-phone-icon lucide-phone w-4 h-4 text-botones-destacados"
+                  class="lucide lucide-phone-icon lucide-phone w-4 h-4 text-primario"
                 >
                   <path
                     d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
@@ -510,23 +540,23 @@
           <div class="bg-fondo-principal shadow-lg rounded-lg relative">
             <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
               <div class="flex items-center justify-center">
-                <div class="w-1.5 h-1.5 rounded-full bg-primario/20"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-secundario"></div>
               </div>
               <div class="flex items-center justify-center"></div>
               <div class="flex items-center justify-center">
-                <div class="w-1.5 h-1.5 rounded-full bg-primario/20"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-secundario"></div>
               </div>
               <div class="flex items-center justify-center"></div>
               <div class="flex items-center justify-center">
-                <div class="w-1.5 h-1.5 rounded-full bg-primario/20"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-secundario"></div>
               </div>
               <div class="flex items-center justify-center"></div>
               <div class="flex items-center justify-center">
-                <div class="w-1.5 h-1.5 rounded-full bg-primario/20"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-secundario"></div>
               </div>
               <div class="flex items-center justify-center"></div>
               <div class="flex items-center justify-center">
-                <div class="w-1.5 h-1.5 rounded-full bg-primario/20"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-secundario"></div>
               </div>
             </div>
             <div class="p-6 relative">

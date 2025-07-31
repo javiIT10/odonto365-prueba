@@ -89,34 +89,38 @@
           <div class="bg-white p-4 rounded-xl shadow-sm mb-6">
             <div class="flex justify-between items-center text-sm">
               <div class="flex items-center space-x-2">
-                <div class="bg-gray-100 p-2 rounded">
+                <div class="bg-bordes/20 p-2 rounded">
                   <svg
-                    class="w-4 h-4 text-gray-700"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-calendar-icon lucide-calendar w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-titulos/55"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    ></path>
+                    <path d="M8 2v4" />
+                    <path d="M16 2v4" />
+                    <rect width="18" height="18" x="3" y="4" rx="2" />
+                    <path d="M3 10h18" />
                   </svg>
                 </div>
                 <span class="text-gray-600"></span>
               </div>
               <div class="flex items-center space-x-2">
-                <div class="w-4 h-4 bg-today rounded"></div>
-                <span class="text-gray-600">Hoy</span>
+                <div class="w-5 h-5 bg-[#10b981] rounded"></div>
+                <p>Hoy</p>
               </div>
               <div class="flex items-center space-x-2">
-                <div class="w-4 h-4 bg-selected rounded"></div>
-                <span class="text-gray-600">Seleccionado</span>
+                <div class="w-5 h-5 bg-botones-destacados rounded"></div>
+                <p>Seleccionado</p>
               </div>
               <div class="flex items-center space-x-2">
-                <div class="w-4 h-4 bg-unavailable rounded"></div>
-                <span class="text-gray-600">No disponible</span>
+                <div class="w-5 h-5 bg-unavailable rounded"></div>
+                <p>No disponible</p>
               </div>
             </div>
           </div>
@@ -125,42 +129,41 @@
           <div class="flex justify-between items-center mb-4">
             <button
               id="prevDays"
-              class="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              class="p-2 btn secundario cursor-pointer rounded-lg hover:bg-bordes/20"
             >
               <svg
-                class="w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-left-icon lucide-chevron-left w-5 h-5"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
+                <path d="m15 18-6-6 6-6" />
               </svg>
             </button>
-            <span
-              id="monthDisplay"
-              class="text-lg font-semibold text-gray-800"
-            ></span>
+            <h5 id="monthDisplay"></h5>
             <button
               id="nextDays"
-              class="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              class="p-2 btn secundario cursor-pointer hover:bg-bordes/20 rounded-lg"
             >
               <svg
-                class="w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right-icon lucide-chevron-right w-5 h-5"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                ></path>
+                <path d="m9 18 6-6-6-6" />
               </svg>
             </button>
           </div>
@@ -185,7 +188,7 @@
             <div class="mb-4">
               <h5 class="mb-2">Especialidad</h5>
               <div
-                class="bg-gray-100 rounded-lg px-4 py-2 font-medium text-base md:text-lg"
+                class="bg-bordes/20 rounded-lg px-4 py-2 font-medium text-base md:text-lg"
               >
                 Cardiología
               </div>
@@ -285,6 +288,7 @@
             </div>
 
             <!-- Botón Proceder al Pago -->
+
             <a
               href="agenda.html"
               class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 flex justify-center items-center focus:outline-none gap-2 btn primario w-full cursor-pointer"
@@ -445,27 +449,23 @@
 
             const dayElement = document.createElement("div");
 
-            let bgColor = "bg-gray-100";
+            let bgColor = "bg-bordes/20";
             let textColor = "text-gray-600";
 
             if (this.isSameDay(currentDayDate, this.today)) {
-              bgColor = "bg-today";
-              textColor = "text-white";
+              bgColor = "bg-[#10b981]";
+              textColor = "text-fondo-principal";
             }
             if (this.isSameDay(currentDayDate, this.selectedAppointment.date)) {
-              bgColor = "bg-selected";
-              textColor = "text-white";
+              bgColor = "bg-botones-destacados";
+              textColor = "text-fondo-principal";
             }
 
             dayElement.className = `${bgColor} ${textColor} p-4 rounded-xl text-center`;
             dayElement.innerHTML = `
-                        <div class="font-medium text-sm">${
-                          daysOfWeek[currentDayDate.getDay()]
-                        }</div>
-                        <div class="text-2xl font-bold">${currentDayDate.getDate()}</div>
-                        <div class="text-sm">${
-                          monthsShort[currentDayDate.getMonth()]
-                        }</div>
+                        <h6>${daysOfWeek[currentDayDate.getDay()]}</h6>
+                        <h4>${currentDayDate.getDate()}</h4>
+                        <h6>${monthsShort[currentDayDate.getMonth()]}</h6>
                     `;
 
             daysContainer.appendChild(dayElement);
@@ -504,7 +504,7 @@
                 this.isSameDateTime(slotDateTime, this.selectedAppointment.date)
               ) {
                 className =
-                  "bg-selected text-white p-3 rounded-lg text-center pointer-events-none cursor-not-allowed";
+                  "bg-botones-destacados text-white p-3 rounded-lg text-center pointer-events-none cursor-not-allowed";
               }
 
               slotElement.className = className;
