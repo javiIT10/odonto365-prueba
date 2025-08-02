@@ -15,28 +15,15 @@
 
     <!-- CSS Perzonalizado -->
     <link rel="stylesheet" href="src/css/output.css" />
-    <!--     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              today: "#10b981",
-              selected: "#3b82f6",
-              unavailable: "#e5e7eb",
-            },
-          },
-        },
-      };
-    </script> -->
   </head>
-  <body class="bg-fondo-alternativo/30 min-h-screen">
+  <body class="bg-fondo-alternativo min-h-screen">
     <!-- Header -->
     <header class="bg-transparent p-4 md:p-6 lg:p-8 max-w-7xl mx-auto">
       <div class="flex justify-between items-center">
         <!-- Botón Regresar -->
         <a
           href="/"
-          class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 flex justify-center items-center focus:outline-none gap-2 btn secundario border border-bordes"
+          class="w-fit flex justify-center items-center focus:outline-none gap-2 btn suave border border-borde"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +45,7 @@
         <!-- Botón Historial de Citas -->
         <a
           href="/"
-          class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 flex justify-center items-center focus:outline-none gap-2 btn secundario border border-bordes"
+          class="w-fit flex justify-center items-center focus:outline-none gap-2 btn suave border border-borde"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +73,7 @@
         <!-- Columna Izquierda: Calendario y Leyenda -->
         <div class="lg:col-span-2">
           <!-- Leyenda expandida con icono de calendario -->
-          <div class="bg-white p-4 rounded-xl shadow-sm mb-6">
+          <div class="bg-fondo-principal p-2 lg:p-4 rounded-xl shadow-sm mb-6">
             <div class="flex justify-between items-center text-sm">
               <div class="flex items-center space-x-2">
                 <div class="bg-bordes/20 p-2 rounded">
@@ -100,7 +87,7 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-calendar-icon lucide-calendar w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-titulos/55"
+                    class="lucide lucide-calendar-icon lucide-calendar w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primario"
                   >
                     <path d="M8 2v4" />
                     <path d="M16 2v4" />
@@ -108,19 +95,18 @@
                     <path d="M3 10h18" />
                   </svg>
                 </div>
-                <span class="text-gray-600"></span>
               </div>
               <div class="flex items-center space-x-2">
                 <div class="w-5 h-5 bg-[#10b981] rounded"></div>
-                <p>Hoy</p>
+                <small>Hoy</small>
               </div>
               <div class="flex items-center space-x-2">
-                <div class="w-5 h-5 bg-botones-destacados rounded"></div>
-                <p>Seleccionado</p>
+                <div class="w-5 h-5 bg-primario rounded"></div>
+                <small>Seleccionado</small>
               </div>
               <div class="flex items-center space-x-2">
-                <div class="w-5 h-5 bg-unavailable rounded"></div>
-                <p>No disponible</p>
+                <div class="w-5 h-5 bg-boton-deshabilitado-bg rounded"></div>
+                <small>No disponible</small>
               </div>
             </div>
           </div>
@@ -129,7 +115,7 @@
           <div class="flex justify-between items-center mb-4">
             <button
               id="prevDays"
-              class="p-2 btn secundario cursor-pointer rounded-lg hover:bg-bordes/20"
+              class="p-2 cursor-pointer btn suave bg-transparent border border-borde rounded-full w-fit"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +135,7 @@
             <h5 id="monthDisplay"></h5>
             <button
               id="nextDays"
-              class="p-2 btn secundario cursor-pointer hover:bg-bordes/20 rounded-lg"
+              class="p-2 cursor-pointer btn suave bg-transparent border border-borde rounded-full w-fit"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -186,20 +172,18 @@
 
             <!-- Especialidad -->
             <div class="mb-4">
-              <h5 class="mb-2">Especialidad</h5>
-              <div
-                class="bg-bordes/20 rounded-lg px-4 py-2 font-medium text-base md:text-lg"
+              <h4 class="mb-2">Especialidad</h4>
+              <p
+                class="encabezado bg-estatus-neutral-bg text-estatus-neutral-texto rounded-lg"
               >
-                Cardiología
-              </div>
+                Ortodoncia
+              </p>
             </div>
 
             <!-- Especialista -->
             <div class="mb-4">
-              <h3 class="text-gray-600 text-sm font-medium mb-2">
-                Especialista
-              </h3>
-              <div class="flex items-center space-x-2">
+              <h4 class="mb-2">Especialista</h4>
+              <div class="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -210,7 +194,7 @@
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="lucide lucide-stethoscope-icon lucide-stethoscope w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-titulos/55"
+                  class="lucide lucide-stethoscope-icon lucide-stethoscope w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primario"
                 >
                   <path d="M11 2v2" />
                   <path d="M5 2v2" />
@@ -226,7 +210,7 @@
 
             <!-- Fecha y Hora -->
             <div class="mb-4">
-              <h5 class="mb-2">Fecha y Hora</h5>
+              <h4 class="mb-2">Fecha y Hora</h4>
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
                   <svg
@@ -239,7 +223,7 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-calendar-icon lucide-calendar w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-titulos/55"
+                    class="lucide lucide-calendar-icon lucide-calendar w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primario"
                   >
                     <path d="M8 2v4" />
                     <path d="M16 2v4" />
@@ -259,7 +243,7 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-clock4-icon lucide-clock-4 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-titulos/55"
+                    class="lucide lucide-clock4-icon lucide-clock-4 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primario"
                   >
                     <path d="M12 6v6l4 2" />
                     <circle cx="12" cy="12" r="10" />
@@ -271,27 +255,27 @@
 
             <!-- Duración -->
             <div class="mb-6">
-              <h5 class="mb-2">Duración</h5>
+              <h4 class="mb-2">Duración</h4>
               <p>45 minutos</p>
             </div>
 
             <!-- Separador -->
-            <hr class="border-gray-200 mb-6" />
+            <hr class="border-borde mb-6" />
 
             <!-- Total a pagar -->
             <div class="mb-6">
               <div class="flex justify-between items-center mb-2">
-                <h5>Total a pagar:</h5>
-                <h5 class="text-green-600">$150.00</h5>
+                <h4>Total a pagar:</h4>
+                <h4 class="text-green-600">$150.00</h4>
               </div>
-              <p>Consulta especializada</p>
+              <small>Consulta especializada</small>
             </div>
 
             <!-- Botón Proceder al Pago -->
 
             <a
               href="agenda.html"
-              class="px-4 md:px-6 lg:px-8 py-2 lg:py-3 flex justify-center items-center focus:outline-none gap-2 btn primario w-full cursor-pointer"
+              class="flex justify-center items-center focus:outline-none gap-2 btn primario w-full cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -312,9 +296,9 @@
             </a>
 
             <!-- Términos y condiciones -->
-            <p class="font-body text-textos text-sm lg:text-base">
+            <small class="mt-4 inline-block">
               Al proceder al pago, aceptas nuestros términos y condiciones
-            </p>
+            </small>
           </div>
         </div>
       </div>
@@ -449,16 +433,17 @@
 
             const dayElement = document.createElement("div");
 
-            let bgColor = "bg-bordes/20";
-            let textColor = "text-gray-600";
+            let bgColor = "bg-transparent border border-borde";
+            let textColor = "text-boton-suave-texto";
 
             if (this.isSameDay(currentDayDate, this.today)) {
               bgColor = "bg-[#10b981]";
-              textColor = "text-fondo-principal";
+              textColor = "text-white";
             }
+
             if (this.isSameDay(currentDayDate, this.selectedAppointment.date)) {
-              bgColor = "bg-botones-destacados";
-              textColor = "text-fondo-principal";
+              bgColor = "bg-primario";
+              textColor = "text-white";
             }
 
             dayElement.className = `${bgColor} ${textColor} p-4 rounded-xl text-center`;
@@ -486,7 +471,7 @@
               slotDateTime.setHours(hour, minute, 0, 0);
 
               let className =
-                "bg-white border border-gray-200 p-3 rounded-lg text-center pointer-events-none cursor-not-allowed";
+                "time-slot-button pointer-events-none cursor-not-allowed";
 
               // Verificar si es un slot no disponible
               const isUnavailable = this.unavailableSlots.some(
@@ -496,7 +481,7 @@
 
               if (isUnavailable) {
                 className =
-                  "bg-unavailable text-gray-400 p-3 rounded-lg text-center pointer-events-none cursor-not-allowed";
+                  "time-slot-button text-boton-deshabilitado-texto bg-boton-deshabilitado-bg cursor-not-allowed";
               }
 
               // Verificar si es el slot seleccionado
@@ -504,7 +489,7 @@
                 this.isSameDateTime(slotDateTime, this.selectedAppointment.date)
               ) {
                 className =
-                  "bg-botones-destacados text-white p-3 rounded-lg text-center pointer-events-none cursor-not-allowed";
+                  "time-slot-button text-boton-primario-texto bg-boton-primario-bg hover:bg-boton-primario-hover-bg pointer-events-none cursor-not-allowed";
               }
 
               slotElement.className = className;

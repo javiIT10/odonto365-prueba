@@ -7,10 +7,6 @@
   --font-heading: "Montserrat", sans-serif;
   --font-body: "Lato", sans-serif;
 
-  --color-botones-destacados: hsl(210, 90%, 50%);
-  --color-botones-destacados-alternativo: hsl(210, 90%, 40%);
-  --color-bordes: hsl(210, 40%, 90%);
-
   /* Colores base */
   --color-primario: hsl(210, 100%, 40%);
   --color-secundario: hsl(210, 80%, 75%);
@@ -29,9 +25,12 @@
   --color-boton-secundario-texto: var(--color-titulos);
   --color-boton-secundario-hover-bg: hsl(210, 80%, 78%);
 
-  --color-boton-suave-bg: hsl(210, 100%, 97%);
+  /* --color-boton-suave-bg: hsl(210, 100%, 97%); */
   --color-boton-suave-hover-bg: hsl(210, 100%, 94%);
   --color-boton-suave-texto: hsl(210, 30%, 40%);
+
+  /*   --color-boton-link-hover-bg: hsl(210, 60%, 95%);
+  --color-boton-link-hover-texto: hsl(210, 100%, 25%); */
 
   --color-boton-deshabilitado-bg: hsl(0, 0%, 92%);
   --color-boton-deshabilitado-texto: hsl(0, 0%, 60%);
@@ -163,7 +162,7 @@
       }
     }
     &.suave {
-      @apply text-boton-suave-texto bg-boton-suave-bg hover:bg-boton-suave-hover-bg;
+      @apply text-boton-suave-texto bg-transparent hover:bg-boton-suave-hover-bg;
       &.movil {
         @apply flex-1 text-center border border-borde;
       }
@@ -173,9 +172,6 @@
     }
     &.cerrar {
       @apply text-boton-cerrar-texto bg-boton-cerrar-bg hover:bg-boton-cerrar-hover-bg;
-    }
-    &transparente {
-      @apply text-enlace-transparente bg-transparent hover:bg-enlace-hover-fondo hover:text-enlace-hover-texto;
     }
   }
 
@@ -190,26 +186,26 @@
     @apply grid grid-cols-7 gap-2 p-1;
   }
   .calendar-day {
-    @apply flex items-center justify-center rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg text-textos bg-bordes/20 hover:bg-fondo-principal;
+    @apply w-full px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-300 md:w-auto md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg font-body text-boton-suave-texto bg-transparent flex items-center justify-center text-center border border-borde cursor-pointer;
   }
   .calendar-day.selectable:hover {
-    @apply hover:bg-bordes cursor-pointer;
+    @apply bg-boton-suave-hover-bg;
   }
   .calendar-day.selected {
-    @apply bg-botones-destacados text-fondo-principal;
+    @apply text-boton-primario-texto bg-boton-primario-bg hover:bg-boton-primario-hover-bg;
   }
   .calendar-day.disabled {
-    @apply bg-gray-100 text-gray-400 cursor-not-allowed;
+    @apply text-boton-deshabilitado-texto bg-boton-deshabilitado-bg cursor-not-allowed;
   }
 
   .time-slot-button {
-    @apply rounded-lg px-3 py-2 font-semibold font-body transition-all duration-200 text-base lg:text-lg text-titulos hover:bg-fondo-principal flex-1 text-center border border-bordes cursor-pointer;
+    @apply w-full px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-300 md:w-auto md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg font-body text-boton-suave-texto bg-transparent flex items-center justify-center text-center border border-borde cursor-pointer;
   }
 
   .time-slot-button.selected {
-    @apply bg-botones-destacados text-fondo-principal;
+    @apply text-boton-primario-texto bg-boton-primario-bg hover:bg-boton-primario-hover-bg;
   }
   .time-slot-button.disabled {
-    @apply bg-gray-100 text-gray-400 cursor-not-allowed;
+    @apply text-boton-deshabilitado-texto bg-boton-deshabilitado-bg cursor-not-allowed;
   }
 }

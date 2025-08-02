@@ -19,11 +19,11 @@
   <body class="bg-fondo-alternativo min-h-screen">
     <!-- Header -->
     <header
-      class="bg-transparent p-4 md:p-6 lg:p-8 flex justify-between items-center max-w-7xl mx-auto"
+      class="bg-transparent p-4 md:p-6 lg:p-8 flex justify-between items-center max-w-7xl mx-auto gap-10 md:gap-12 lg:gap-16"
     >
       <a
         href="/"
-        class="flex justify-center items-center focus:outline-none gap-2 btn transparente"
+        class="w-fit flex justify-center items-center focus:outline-none gap-2 btn suave border border-borde"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@
 
       <a
         href="#"
-        class="flex justify-center items-center focus:outline-none gap-2 btn cerrar"
+        class="w-fit flex justify-center items-center focus:outline-none gap-2 btn cerrar"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -105,11 +105,9 @@
             </div>
 
             <!-- Name -->
-            <h1
-              class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-titulos mb-8 md:mb-10 lg:mb-12"
-            >
+            <h2 class="text-center text-titulos mb-8 md:mb-10 lg:mb-12">
               María González
-            </h1>
+            </h2>
 
             <!-- Contact Information -->
             <div class="space-y-4 md:space-y-6 lg:space-y-8">
@@ -133,14 +131,8 @@
                   </svg>
                 </div>
                 <div class="flex-1">
-                  <h3
-                    class="font-medium text-titulos text-base md:text-lg lg:text-xl mb-1"
-                  >
-                    Correo Electrónico
-                  </h3>
-                  <p class="text-textos text-sm md:text-base lg:text-lg">
-                    maria.gonzalez@email.com
-                  </p>
+                  <h4>Correo Electrónico</h4>
+                  <p>maria.gonzalez@email.com</p>
                 </div>
               </div>
 
@@ -164,14 +156,8 @@
                   </svg>
                 </div>
                 <div class="flex-1">
-                  <h3
-                    class="font-medium text-titulos text-base md:text-lg lg:text-xl mb-1"
-                  >
-                    Teléfono
-                  </h3>
-                  <p class="text-textos text-sm md:text-base lg:text-lg">
-                    +52 55 1234 5678
-                  </p>
+                  <h4>Teléfono</h4>
+                  <p>+52 55 1234 5678</p>
                 </div>
               </div>
 
@@ -195,14 +181,8 @@
                   </svg>
                 </div>
                 <div class="flex-1">
-                  <h3
-                    class="font-medium text-titulos text-base md:text-lg lg:text-xl mb-1"
-                  >
-                    ID de Paciente
-                  </h3>
-                  <p class="text-textos text-sm md:text-base lg:text-lg">
-                    PAC-2024-001
-                  </p>
+                  <h4>ID de Paciente</h4>
+                  <p>PAC-2024-001</p>
                 </div>
               </div>
             </div>
@@ -210,7 +190,7 @@
             <!-- Edit Button -->
             <a
               href="#"
-              class="w-full mt-8 md:mt-10 lg:mt-12 px-4 md:px-6 lg:px-8 py-2 lg:py-3 flex justify-center items-center focus:outline-none gap-2 btn primario"
+              class="mt-8 md:mt-10 lg:mt-12 flex justify-center items-center focus:outline-none gap-2 btn primario"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -261,11 +241,7 @@
                 <rect width="18" height="18" x="3" y="4" rx="2" />
                 <path d="M3 10h18" />
               </svg>
-              <h2
-                class="text-xl md:text-2xl lg:text-3xl font-bold text-titulos"
-              >
-                Historial de Citas
-              </h2>
+              <h2>Historial de Citas</h2>
             </div>
 
             <div
@@ -319,11 +295,13 @@
       // Function to get status badge classes
       function getStatusClasses(color) {
         const classes = {
-          green: "bg-green-100 text-green-800",
-          blue: "bg-blue-100 text-blue-800",
-          yellow: "bg-yellow-100 text-yellow-800",
+          green: "bg-estatus-completada-bg text-estatus-completada-texto",
+          blue: "bg-estatus-proxima-bg text-estatus-proxima-texto",
+          yellow: "bg-estatus-agendada-bg text-estatus-agendada-texto",
         };
-        return classes[color] || "bg-gray-100 text-gray-800";
+        return (
+          classes[color] || "bg-estatus-neutral-bg text-estatus-neutral-texto"
+        );
       }
 
       // Function to render appointments
@@ -337,14 +315,14 @@
 
           appointmentCard.innerHTML = `
                     <div class="flex items-start justify-between mb-3 md:mb-4 lg:mb-5">
-                        <span class="encabezado bg-gray-100 text-gray-800">
+                        <small class="encabezado bg-estatus-neutral-bg text-estatus-neutral-texto">
                             ${appointment.specialty}
-                        </span>
-                        <span class="encabezado ${getStatusClasses(
+                        </small>
+                        <small class="encabezado ${getStatusClasses(
                           appointment.statusColor
                         )}">
                             ${appointment.status}
-                        </span>
+                        </small>
                     </div>
                     
                     <div class="space-y-2 md:space-y-3 lg:space-y-4">
